@@ -1,0 +1,90 @@
+<section class="contact wrap">
+  <span class="eyebrow rv">Let's work</span>
+  <h1 class="rv" style="margin-top:var(--space-5)">Have a difficult problem?<br><span class="l2">Let's figure out what to build.</span></h1>
+  <p class="contact-lead rv">Tell us what you're trying to solve. This isn't a sales form — it's the start of a technical conversation, and it goes to an engineer, not a queue.</p>
+
+  <div class="contact-grid">
+    <div class="contact-direct rv">
+      <span class="k">Prefer to talk first?</span>
+      <a href="mailto:hello@developeroffice.com">hello@developeroffice.com</a>
+      <a href="tel:+94777552555">+94 77 755 2555</a>
+      <span class="k">Location</span>
+      Nugegoda, Colombo
+    </div>
+
+    <div class="rv">
+      {{#if success}}
+      <div class="form-success">
+        <h2>Thank you.</h2>
+        <p>An engineer at Developer Office will read this and reply personally.</p>
+      </div>
+      {{else}}
+      <form method="POST" action="/contact/start-a-project" novalidate>
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        {{#if errors.form}}<p class="form-error" role="alert">{{errors.form}}</p>{{/if}}
+        {{! honeypot — hidden from real users }}
+        <div class="honeypot" aria-hidden="true">
+          <label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div class="form-row two">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required value="{{values.name}}" {{#if errors.name}}aria-invalid="true" aria-describedby="name-error"{{/if}}>
+            {{#if errors.name}}<span id="name-error" class="field-error">{{errors.name}}</span>{{/if}}
+          </div>
+          <div>
+            <label for="organisation">Organisation</label>
+            <input id="organisation" name="organisation" type="text" required value="{{values.organisation}}" {{#if errors.organisation}}aria-invalid="true" aria-describedby="organisation-error"{{/if}}>
+            {{#if errors.organisation}}<span id="organisation-error" class="field-error">{{errors.organisation}}</span>{{/if}}
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required value="{{values.email}}" {{#if errors.email}}aria-invalid="true" aria-describedby="email-error"{{/if}}>
+          {{#if errors.email}}<span id="email-error" class="field-error">{{errors.email}}</span>{{/if}}
+        </div>
+
+        <div class="form-row">
+          <label for="projectType">Project type</label>
+          <select id="projectType" name="projectType" required {{#if errors.projectType}}aria-invalid="true" aria-describedby="projectType-error"{{/if}}>
+            <option value="">Select…</option>
+            {{#each projectTypes}}<option value="{{this}}" {{#if (eq this ../values.projectType)}}selected{{/if}}>{{this}}</option>{{/each}}
+          </select>
+          {{#if errors.projectType}}<span id="projectType-error" class="field-error">{{errors.projectType}}</span>{{/if}}
+        </div>
+
+        <div class="form-row">
+          <label for="problem">The problem or opportunity</label>
+          <textarea id="problem" name="problem" required placeholder="What's hard about it? What has to be true for it to work?" {{#if errors.problem}}aria-invalid="true" aria-describedby="problem-error"{{/if}}>{{values.problem}}</textarea>
+          {{#if errors.problem}}<span id="problem-error" class="field-error">{{errors.problem}}</span>{{/if}}
+        </div>
+
+        <div class="form-row two">
+          <div>
+            <label for="timeline">Timeline</label>
+            <select id="timeline" name="timeline">
+              <option value="">Select…</option>
+              {{#each timelines}}<option value="{{this}}" {{#if (eq this ../values.timeline)}}selected{{/if}}>{{this}}</option>{{/each}}
+            </select>
+          </div>
+          <div>
+            <label for="budget">Budget range</label>
+            <input id="budget" name="budget" type="text" placeholder="Prefer to discuss" value="{{values.budget}}">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="extra">Anything else</label>
+          <textarea id="extra" name="extra">{{values.extra}}</textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary">Start the conversation <span class="arw">&rarr;</span></button>
+        </div>
+      </form>
+      {{/if}}
+    </div>
+  </div>
+</section>

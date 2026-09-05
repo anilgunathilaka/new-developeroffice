@@ -1,0 +1,60 @@
+{{#if stub}}
+<article class="cs wrap">
+  <div class="cs-hero rv">
+    <span class="tag">{{stub.tag}}</span>
+    <h1>{{stub.name}}</h1>
+    <p class="descriptor">{{stub.descriptor}}</p>
+  </div>
+  <div class="cs-media rv"><div class="viz" aria-hidden="true">{{> (concat 'viz/' stub.viz)}}</div></div>
+  <div class="cs-section rv">
+    <div class="n">Case study</div>
+    <div><p class="needs-content">[CONTENT REQUIRED]</p><p style="margin-top:var(--space-4);color:var(--mid-grey)">A full case study for this project is in preparation. In the meantime, tell us about a similar problem and we'll talk specifics.</p></div>
+  </div>
+  <div class="cs-cta rv">
+    <h2>Have a similar problem?</h2>
+    {{> button href="/contact/start-a-project" label="Start a Project" arrow=true}}
+  </div>
+</article>
+{{else}}
+<article class="cs wrap">
+  <div class="cs-hero rv">
+    <span class="tag">{{study.tag}}</span>
+    <h1>{{study.name}}</h1>
+    <p class="descriptor">{{study.descriptor}}</p>
+  </div>
+  <div class="cs-media rv"><div class="viz" aria-hidden="true">{{> (concat 'viz/' study.viz)}}</div></div>
+
+  <div class="cs-section rv"><div class="n">01 &mdash; Context</div><div><p>{{study.context}}</p></div></div>
+  <div class="cs-section rv"><div class="n">02 &mdash; The Problem</div><div><p>{{study.problem}}</p></div></div>
+  <div class="cs-section question rv"><div class="n">03 &mdash; The Question</div><div><p>{{study.question}}</p></div></div>
+  <div class="cs-section rv"><div class="n">04 &mdash; Research</div><div><p>{{study.research}}</p></div></div>
+  <div class="cs-section rv"><div class="n">05 &mdash; Approach</div><div><p>{{study.approach}}</p></div></div>
+  <div class="cs-section rv"><div class="n">06 &mdash; Engineering</div><div><p>{{study.engineering}}</p></div></div>
+  <div class="cs-section rv"><div class="n">07 &mdash; Validation</div><div><p>{{study.validation}}</p></div></div>
+  <div class="cs-section cs-result rv">
+    <div class="n">08 &mdash; Result</div>
+    <div>
+      {{#if study.resultVerified}}<p class="big">{{study.result}}</p>
+      {{else}}<p class="big">{{study.result}}</p><p class="needs-content">[RESULT TO BE VERIFIED]</p>{{/if}}
+    </div>
+  </div>
+  <div class="cs-section rv"><div class="n">09 &mdash; Impact</div><div><p>{{study.impact}}</p></div></div>
+  <div class="cs-section cs-learned rv"><div class="n">10 &mdash; What We Learned</div><div><p>{{study.learned}}</p></div></div>
+  <div class="cs-section rv">
+    <div class="n">11 &mdash; Technology</div>
+    <div><ul class="cs-tech">{{#each study.technology}}<li>{{this}}</li>{{/each}}</ul></div>
+  </div>
+
+  {{#if related.length}}
+  <div class="cs-related rv">
+    <span class="eyebrow">Related work</span>
+    <div class="cs-related-grid">{{#each related}}{{> project-card this}}{{/each}}</div>
+  </div>
+  {{/if}}
+
+  <div class="cs-cta rv">
+    <h2>Have a similar problem?</h2>
+    {{> button href="/contact/start-a-project" label="Start a Project" arrow=true}}
+  </div>
+</article>
+{{/if}}

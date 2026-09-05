@@ -1,0 +1,23 @@
+<article class="cap wrap">
+  <div class="rv">
+    <span class="tag">Capability</span>
+    <h1 style="margin-top:var(--space-4)">{{capability.name}}</h1>
+    <p style="margin-top:var(--space-5);font-size:clamp(18px,2vw,24px);color:var(--mid-grey);max-width:52ch">{{capability.hero}}</p>
+  </div>
+  <div class="cap-block rv"><h2>The problem we solve</h2><p>{{capability.problem}}</p></div>
+  <div class="cap-block rv"><h2>What we do</h2><p>{{capability.whatWeDo}}</p></div>
+  <div class="cap-block rv"><h2>How we work</h2><p>Our five-stage method — Understand, Model, Build, Validate, Operate. <a href="/studio/approach" class="link-arw" style="font-size:inherit">See the approach <span class="arw">&rarr;</span></a></p></div>
+  <div class="cap-block rv"><h2>FAQ</h2><p class="needs-content">[CONTENT REQUIRED]</p></div>
+
+  {{#if related.length}}
+  <div class="cap-related rv">
+    <span class="eyebrow">Relevant projects</span>
+    <div class="cap-related-grid">{{#each related}}{{> project-card this}}{{/each}}</div>
+  </div>
+  {{/if}}
+
+  <div class="cs-cta rv" style="margin-top:var(--space-9)">
+    <h2>Need this kind of work?</h2>
+    {{> button href="/contact/start-a-project" label="Start a Project" arrow=true}}
+  </div>
+</article>

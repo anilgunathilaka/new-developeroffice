@@ -1,0 +1,4 @@
+/* pages/work.css — Work index */
+.work-index{padding-top:160px}
+.work-list{margin-top:var(--space-8);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6)}
+@media (max-width:760px){.work-list{grid-template-columns:1fr}}

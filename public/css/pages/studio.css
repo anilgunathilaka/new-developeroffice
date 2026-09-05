@@ -1,0 +1,16 @@
+/* pages/studio.css — About / Approach / Team / Careers */
+.studio{padding-top:150px}
+.studio h1{font-size:clamp(34px,6vw,84px);letter-spacing:-.03em;max-width:16ch}
+.studio-lead{margin-top:var(--space-6);font-size:clamp(18px,2vw,22px);color:var(--mid-grey);max-width:60ch}
+.studio-block{padding:var(--space-7) 0;border-top:1px solid var(--soft-grey)}
+.studio-block h2{font-size:clamp(22px,2.6vw,32px);margin-bottom:var(--space-4)}
+.studio-block p{max-width:62ch;margin-bottom:var(--space-3)}
+.values{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-4)}
+.values li{font-family:var(--mono);font-size:12.5px;border:1px solid var(--soft-grey);border-radius:999px;padding:6px 13px;color:var(--mid-grey)}
+/* approach steps */
+.approach-steps{margin-top:var(--space-7);display:flex;flex-direction:column}
+.approach-step{display:grid;grid-template-columns:90px 1fr;gap:var(--space-6);padding:var(--space-6) 0;border-top:1px solid var(--soft-grey)}
+.approach-step .n{font-family:var(--display);font-size:clamp(30px,4vw,56px);color:var(--cobalt);line-height:1}
+.approach-step h3{font-size:clamp(20px,2.2vw,26px);margin-bottom:var(--space-3)}
+.approach-step p{color:var(--mid-grey);max-width:56ch}
+@media (max-width:760px){.approach-step{grid-template-columns:1fr;gap:var(--space-3)}}

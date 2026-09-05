@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{> seo-head}}
+  <link rel="stylesheet" href="{{asset '/css/tokens.css'}}">
+  <link rel="stylesheet" href="{{asset '/css/main.css'}}">
+  {{#if meta.pageCss}}<link rel="stylesheet" href="{{asset (concat '/css/pages/' meta.pageCss '.css')}}">{{/if}}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {{> header}}
+  {{> mobile-menu}}
+  <main id="main">
+    {{{body}}}
+  </main>
+  {{> footer}}
+  {{> action-bar}}
+  <script defer src="{{asset '/js/header.js'}}"></script>
+  <script defer src="{{asset '/js/reveal.js'}}"></script>
+  <script defer src="{{asset '/js/count.js'}}"></script>
+  <script defer src="{{asset '/js/method.js'}}"></script>
+</body>
+</html>

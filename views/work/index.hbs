@@ -1,0 +1,8 @@
+<section class="work-index wrap">
+  <span class="eyebrow rv">Selected work</span>
+  <h1 class="rv" style="font-size:clamp(38px,6vw,84px);letter-spacing:-.03em;max-width:14ch;margin-top:var(--space-5)">Systems that are running now.</h1>
+  <p class="rv" style="margin-top:var(--space-5);color:var(--mid-grey);max-width:56ch">We take on problems where correctness, privacy and scale decide whether the software is any good at all. Below is a selection of what we've built and what we learned building it.</p>
+  <div class="work-list">
+    {{#each projects}}{{> project-card this}}{{/each}}
+  </div>
+</section>

@@ -1,0 +1,14 @@
+<section class="cap-index wrap">
+  <span class="eyebrow rv">Capabilities</span>
+  <h1 class="rv" style="font-size:clamp(38px,6vw,84px);letter-spacing:-.03em;max-width:14ch;margin-top:var(--space-5)">What we do, and how we do it.</h1>
+  <p class="rv" style="margin-top:var(--space-5);color:var(--mid-grey);max-width:58ch">Six capabilities, built to take a product from first question to running system. Most engagements combine several — because real problems rarely respect the boundaries between them.</p>
+  <div class="cap-grid">
+    {{#each capabilities}}
+    <div class="cap-cell rv">
+      <h2>{{name}}</h2>
+      <p>{{hero}}</p>
+      <a href="/capabilities/{{slug}}" class="link-arw">Explore <span class="arw">&rarr;</span></a>
+    </div>
+    {{/each}}
+  </div>
+</section>

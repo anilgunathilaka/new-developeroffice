@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Developer Office — Engineering-Grade Software from Colombo</title>
+<meta name="description" content="A research-driven engineering studio in Colombo building production software and AI systems where reliability, accuracy and privacy matter. Thirty years.">
+<meta name="theme-color" content="#F7F6F2">
+<meta property="og:title" content="Developer Office — Engineering-Grade Software from Colombo">
+<meta property="og:description" content="Research-driven engineering for complex products and intelligent systems.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DEVELOPER OFFICE — HOMEPAGE
+   Tokens per strategy §20 / §21
+   ============================================================ */
+:root{
+  --off-white:#F7F6F2;
+  --near-black:#111111;
+  --cobalt:#3155FF;
+  --cobalt-dark:#2643CC;
+  --soft-grey:#E8E8E3;
+  --mid-grey:#6B6B66;
+
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+  --space-5:24px; --space-6:32px; --space-7:48px; --space-8:64px;
+  --space-9:96px; --space-10:128px;
+
+  --radius:4px; --radius-sm:2px;
+  --ease:cubic-bezier(.2,.6,.2,1);
+  --t-state:180ms var(--ease);
+
+  --display:'Space Grotesk',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+  --mono:'Space Mono',ui-monospace,monospace;
+
+  --page-x:clamp(20px,6vw,120px);
+  --measure:64ch;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden;max-width:100%}
+body{
+  background:var(--off-white);
+  color:var(--near-black);
+  font-family:var(--body);
+  font-size:18px;
+  line-height:1.6;
+  font-feature-settings:"kern","liga","calt";
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--cobalt);color:var(--off-white)}
+
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+
+/* ---------- Shared type ---------- */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--mid-grey);
+  display:inline-flex;
+  align-items:center;
+  gap:var(--space-3);
+}
+.eyebrow::before{
+  content:"";
+  width:24px;height:1px;background:var(--cobalt);
+  display:inline-block;
+}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.02em;line-height:1.02}
+.lede{font-size:clamp(20px,2.4vw,28px);line-height:1.4;max-width:26ch;color:var(--near-black)}
+p{max-width:var(--measure)}
+
+.wrap{padding-inline:var(--page-x)}
+section{padding-block:clamp(64px,10vw,var(--space-10))}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--space-5) var(--page-x);
+  transition:background var(--t-state),border-color var(--t-state),transform 260ms var(--ease);
+  border-bottom:1px solid transparent;
+}
+.header.solid{
+  background:rgba(247,246,242,.86);
+  backdrop-filter:blur(10px);
+  border-bottom-color:var(--soft-grey);
+}
+.header.hide{transform:translateY(-100%)}
+.brand{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.01em}
+.nav{display:flex;align-items:center;gap:var(--space-7)}
+.nav-links{display:flex;gap:var(--space-6);list-style:none}
+.nav-links a{
+  font-size:15px;font-weight:500;position:relative;padding-block:4px;
+  color:var(--near-black);transition:color var(--t-state);
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
+  background:var(--cobalt);transition:width var(--t-state);
+}
+.nav-links a:hover{color:var(--cobalt)}
+.nav-links a:hover::after{width:100%}
+
+.btn{
+  font-family:var(--body);font-size:15px;font-weight:600;cursor:pointer;
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  padding:13px 22px;border-radius:var(--radius);border:1px solid var(--near-black);
+  background:var(--near-black);color:var(--off-white);
+  transition:background var(--t-state),transform var(--t-state),border-color var(--t-state),color var(--t-state);
+}
+.btn .arw{transition:transform var(--t-state)}
+.btn:hover{background:var(--cobalt);border-color:var(--cobalt)}
+.btn:hover .arw{transform:translateX(4px)}
+.btn-primary{background:var(--cobalt);border-color:var(--cobalt)}
+.btn-primary:hover{background:var(--cobalt-dark);border-color:var(--cobalt-dark)}
+.btn-ghost{background:transparent;color:var(--near-black)}
+.btn-ghost:hover{background:var(--near-black);color:var(--off-white);border-color:var(--near-black)}
+
+/* header ghost while over hero */
+.header:not(.solid) .btn-header{background:transparent;color:var(--near-black);border-color:var(--near-black)}
+.header:not(.solid) .btn-header:hover{background:var(--near-black);color:var(--off-white)}
+
+.menu-toggle{display:none;font-family:var(--mono);font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;background:none;border:none;cursor:pointer;color:var(--near-black);padding:8px}
+
+/* mobile overlay */
+.mobile-menu{
+  position:fixed;inset:0;z-index:99;background:var(--near-black);color:var(--off-white);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:96px var(--page-x) var(--space-7);
+  transform:translateY(-100%);transition:transform 300ms var(--ease);
+}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-links{list-style:none;display:flex;flex-direction:column;gap:var(--space-4)}
+.mobile-links a{font-family:var(--display);font-size:clamp(30px,9vw,44px);font-weight:600;letter-spacing:-.02em}
+.mobile-links a:active{color:var(--cobalt)}
+.mobile-foot{font-family:var(--mono);font-size:13px;line-height:2;color:#9b9b95}
+.mobile-foot a{color:var(--off-white)}
+.mobile-menu .btn{width:100%;justify-content:center;margin-top:var(--space-6);
+  background:var(--cobalt);border-color:var(--cobalt);color:var(--off-white)}
+
+/* ============================================================
+   01 · HERO
+   ============================================================ */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding-top:120px;padding-bottom:var(--space-8);position:relative;
+}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.9;
+  background-image:radial-gradient(#dcdbd4 1.4px,transparent 1.5px);
+  background-size:24px 24px;
+  -webkit-mask-image:linear-gradient(120deg,transparent 40%,#000 105%);
+  mask-image:linear-gradient(120deg,transparent 40%,#000 105%);
+}
+.hero>*{position:relative;z-index:1}
+.hero .eyebrow{margin-bottom:var(--space-6)}
+.hero h1{
+  font-size:clamp(48px,11.5vw,160px);
+  font-weight:700;letter-spacing:-.035em;line-height:.92;
+  max-width:14ch;
+}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln span{display:block;transform:translateY(105%);opacity:0}
+.reveal-on .hero h1 .ln span,
+.no-motion .hero h1 .ln span{animation:riseIn .8s var(--ease) forwards}
+.reveal-on .hero h1 .ln:nth-child(2) span{animation-delay:.07s}
+.reveal-on .hero h1 .ln:nth-child(3) span{animation-delay:.14s}
+@keyframes riseIn{to{transform:translateY(0);opacity:1}}
+.hero-sub{margin-top:var(--space-6);font-size:clamp(19px,2.3vw,26px);line-height:1.35;
+  max-width:30ch;color:var(--near-black);font-weight:500}
+.hero-intro{margin-top:var(--space-6);color:var(--mid-grey);max-width:56ch;font-size:17px}
+.hero-cta{margin-top:var(--space-7);display:flex;gap:var(--space-4);flex-wrap:wrap}
+.hero-corner{
+  position:absolute;bottom:var(--space-7);right:var(--page-x);z-index:1;
+  font-family:var(--mono);font-size:12px;color:var(--mid-grey);text-align:right;line-height:1.8;
+}
+/* ============================================================
+   REVEAL util
+   ============================================================ */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ============================================================
+   02 · OPENING STATEMENT
+   ============================================================ */
+.opening{border-top:1px solid var(--soft-grey)}
+.opening-h{font-size:clamp(30px,5vw,66px);max-width:16ch;line-height:1.02}
+.opening-body{margin-top:var(--space-7);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-8);align-items:start}
+.opening-body p{color:var(--mid-grey);max-width:52ch}
+.opening-body p strong{color:var(--near-black);font-weight:600}
+.disciplines{list-style:none;display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-5)}
+.disciplines li{font-family:var(--mono);font-size:12.5px;color:var(--cobalt);
+  border:1px solid var(--soft-grey);border-radius:999px;padding:6px 13px}
+
+/* ============================================================
+   03 · PROOF
+   ============================================================ */
+.proof{background:var(--near-black);color:var(--off-white)}
+.proof .eyebrow{color:#9b9b95}
+.proof .eyebrow::before{background:var(--cobalt)}
+.proof-rule{height:1px;background:#2c2c2c;margin:var(--space-6) 0 var(--space-8)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-7)}
+.stat{min-width:0}
+.stat .num{font-family:var(--display);font-weight:600;font-size:clamp(40px,4.4vw,80px);
+  line-height:.98;letter-spacing:-.03em}
+.stat .num.txt{font-size:clamp(32px,3.4vw,58px)}
+.stat .num .u{color:var(--cobalt)}
+.stat .lab{margin-top:var(--space-4);font-size:15px;color:#c9c9c4;max-width:22ch;line-height:1.45}
+.proof-note{margin-top:var(--space-8);font-family:var(--mono);font-size:13px;color:#9b9b95;max-width:60ch}
+
+/* ============================================================
+   04 · SELECTED WORK
+   ============================================================ */
+.work-head{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--space-6);flex-wrap:wrap}
+.work-head h2{font-size:clamp(30px,4.6vw,60px);max-width:14ch}
+.work-head p{color:var(--mid-grey);max-width:40ch;font-size:16px}
+.work-grid{margin-top:var(--space-8);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6)}
+.pcard{
+  border:1px solid var(--soft-grey);border-radius:var(--radius);overflow:hidden;
+  background:var(--off-white);display:flex;flex-direction:column;
+  transition:border-color var(--t-state);position:relative;
+}
+.pcard:hover{border-color:var(--near-black)}
+.pcard-media{aspect-ratio:16/10;overflow:hidden;position:relative;background:var(--soft-grey)}
+.pcard-media .viz{position:absolute;inset:0;transition:transform .5s var(--ease)}
+.pcard:hover .pcard-media .viz{transform:scale(1.04)}
+.pcard-body{padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-3);flex:1}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cobalt)}
+.pcard h3{font-size:clamp(22px,2.4vw,30px);transition:color var(--t-state)}
+.pcard:hover h3{color:var(--cobalt)}
+.pcard p{font-size:15px;color:var(--mid-grey);flex:1}
+.pcard .go{font-family:var(--mono);font-size:13px;color:var(--near-black);
+  display:inline-flex;gap:8px;align-items:center;opacity:0;transform:translateY(6px);
+  transition:opacity var(--t-state),transform var(--t-state)}
+.pcard:hover .go{opacity:1;transform:none}
+.pcard .go .arw{transition:transform var(--t-state)}
+.pcard:hover .go .arw{transform:translateX(4px)}
+.work-all{margin-top:var(--space-7)}
+.link-arw{font-family:var(--mono);font-size:14px;display:inline-flex;gap:10px;align-items:center;
+  border-bottom:1px solid var(--soft-grey);padding-bottom:4px;transition:color var(--t-state),border-color var(--t-state)}
+.link-arw:hover{color:var(--cobalt);border-color:var(--cobalt)}
+.link-arw .arw{transition:transform var(--t-state)}
+.link-arw:hover .arw{transform:translateX(4px)}
+
+/* SVG viz palettes inside cards */
+.viz svg{width:100%;height:100%}
+
+/* ============================================================
+   05 · BUILT FOR REALITY
+   ============================================================ */
+.reality{background:var(--near-black);color:var(--off-white)}
+.reality h2{font-size:clamp(30px,5.4vw,72px);max-width:15ch;line-height:1.0}
+.reality-body{margin-top:var(--space-6);display:grid;grid-template-columns:1.2fr 1fr;gap:var(--space-8);align-items:end}
+.reality-body p{color:#c9c9c4;max-width:52ch}
+.institutions{list-style:none;display:flex;flex-direction:column;gap:0;border-top:1px solid #2c2c2c}
+.institutions li{font-family:var(--mono);font-size:14px;letter-spacing:.04em;color:var(--off-white);
+  padding:var(--space-4) 0;border-bottom:1px solid #2c2c2c;display:flex;justify-content:space-between}
+.institutions li span{color:#7d7d78}
+
+/* ============================================================
+   06 · AI
+   ============================================================ */
+.ai .eyebrow{margin-bottom:var(--space-6)}
+.ai h2{font-size:clamp(34px,7vw,96px);letter-spacing:-.03em}
+.ai-lede{margin-top:var(--space-6);color:var(--mid-grey);max-width:58ch}
+.ai-strands{margin-top:var(--space-8);display:grid;grid-template-columns:repeat(2,1fr);gap:0;
+  border-top:1px solid var(--soft-grey);border-left:1px solid var(--soft-grey)}
+.strand{border-right:1px solid var(--soft-grey);border-bottom:1px solid var(--soft-grey);
+  padding:var(--space-6);transition:background var(--t-state)}
+.strand:hover{background:#efeee9}
+.strand .tag{display:block;margin-bottom:var(--space-3)}
+.strand p{font-size:15.5px;color:var(--near-black);max-width:44ch}
+.ai-link{margin-top:var(--space-7)}
+
+/* ============================================================
+   07 · METHOD
+   ============================================================ */
+.method{border-top:1px solid var(--soft-grey)}
+.method h2{font-size:clamp(26px,3.6vw,46px);max-width:20ch}
+.steps{margin-top:var(--space-8);display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-5);position:relative}
+.step{position:relative;padding-top:var(--space-5)}
+.step::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--soft-grey)}
+.step.lit::before{background:var(--cobalt)}
+.step .n{font-family:var(--mono);font-size:14px;color:var(--cobalt);font-weight:700}
+.step h3{font-size:19px;margin-top:var(--space-3);letter-spacing:0}
+.step p{font-size:14px;color:var(--mid-grey);margin-top:var(--space-3)}
+
+/* ============================================================
+   08 · INSIGHTS
+   ============================================================ */
+.insights{background:#efeee9}
+.insights h2{font-size:clamp(30px,4.6vw,60px)}
+.art-grid{margin-top:var(--space-8);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6)}
+.art{border-top:1px solid var(--near-black);padding-top:var(--space-4);
+  display:flex;flex-direction:column;gap:var(--space-4);min-height:220px}
+.art .tag{color:var(--cobalt)}
+.art h3{font-size:22px;line-height:1.15;letter-spacing:-.01em;transition:color var(--t-state);flex:1}
+.art:hover h3{color:var(--cobalt)}
+.art .meta{font-family:var(--mono);font-size:12px;color:var(--mid-grey);
+  display:flex;justify-content:space-between;align-items:center}
+.art .meta .arw{transition:transform var(--t-state)}
+.art:hover .meta .arw{transform:translateX(4px)}
+.insights-link{margin-top:var(--space-7)}
+
+/* ============================================================
+   09 · CLOSING
+   ============================================================ */
+.closing{background:var(--cobalt);color:var(--off-white);text-align:left}
+.closing .eyebrow{color:rgba(255,255,255,.7)}
+.closing .eyebrow::before{background:var(--off-white)}
+.closing h2{font-size:clamp(38px,8vw,110px);line-height:.96;letter-spacing:-.03em;max-width:12ch}
+.closing h2 .l2{color:rgba(255,255,255,.62)}
+.closing p{margin-top:var(--space-6);color:rgba(255,255,255,.86);max-width:54ch}
+.closing-cta{margin-top:var(--space-7);display:flex;gap:var(--space-4);flex-wrap:wrap;align-items:center}
+.closing .btn{background:var(--off-white);color:var(--near-black);border-color:var(--off-white)}
+.closing .btn:hover{background:var(--near-black);color:var(--off-white);border-color:var(--near-black)}
+.closing .btn:hover .arw{transform:translateX(4px)}
+.closing-alt{font-size:15px;color:rgba(255,255,255,.86);border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px}
+.closing-contact{margin-top:var(--space-8);font-family:var(--mono);font-size:13px;color:rgba(255,255,255,.8);
+  display:flex;gap:var(--space-6);flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.24);padding-top:var(--space-5)}
+.closing-contact a:hover{color:#fff}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{background:var(--near-black);color:var(--off-white);padding:var(--space-9) var(--page-x) var(--space-6)}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:var(--space-7)}
+.foot-brand .fb-name{font-family:var(--display);font-size:24px;font-weight:600}
+.foot-brand p{font-size:14px;color:#9b9b95;margin-top:var(--space-4);max-width:34ch}
+.foot-col h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:#7d7d78;font-weight:400;margin-bottom:var(--space-4)}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:var(--space-3)}
+.foot-col a{font-size:15px;color:#d4d4cf;transition:color var(--t-state)}
+.foot-col a:hover{color:var(--cobalt)}
+.foot-bottom{margin-top:var(--space-9);padding-top:var(--space-5);border-top:1px solid #2c2c2c;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);
+  font-family:var(--mono);font-size:12px;color:#7d7d78}
+.foot-bottom a{color:#7d7d78}
+.foot-bottom a:hover{color:var(--off-white)}
+.foot-bottom .links{display:flex;gap:var(--space-5)}
+
+/* mobile bottom action bar */
+.action-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;
+  padding:12px var(--page-x);background:rgba(247,246,242,.92);backdrop-filter:blur(10px);
+  border-top:1px solid var(--soft-grey);transform:translateY(100%);transition:transform 260ms var(--ease)}
+.action-bar.show{transform:translateY(0)}
+.action-bar .btn{width:100%;justify-content:center}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1000px){
+  .stats{grid-template-columns:1fr 1fr;gap:var(--space-8) var(--space-6)}
+  .steps{grid-template-columns:1fr 1fr;gap:var(--space-7) var(--space-5)}
+  .art-grid{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  body{font-size:17px}
+  .nav-links,.nav .btn-header{display:none}
+  .menu-toggle{display:block}
+  .opening-body{grid-template-columns:1fr;gap:var(--space-6)}
+  .work-grid{grid-template-columns:1fr}
+  .reality-body{grid-template-columns:1fr;gap:var(--space-6)}
+  .ai-strands{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .art-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .hero-corner{display:none}
+  .action-bar{display:block}
+  .closing-contact{flex-direction:column;gap:var(--space-3)}
+}
+@media (max-width:440px){
+  .foot-grid{grid-template-columns:1fr}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  .hero h1 .ln span{transform:none;opacity:1}
+  .rv{opacity:1;transform:none}
+  .scroll-cue .bar::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <a href="/" class="brand">Developer Office</a>
+  <nav class="nav" aria-label="Primary">
+    <ul class="nav-links">
+      <li><a href="/work">Work</a></li>
+      <li><a href="/capabilities">Capabilities</a></li>
+      <li><a href="/studio">Studio</a></li>
+      <li><a href="/insights">Insights</a></li>
+    </ul>
+    <a href="/contact/start-a-project" class="btn btn-header">Start a Project <span class="arw">&rarr;</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+  </nav>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul class="mobile-links">
+    <li><a href="/work">Work</a></li>
+    <li><a href="/capabilities">Capabilities</a></li>
+    <li><a href="/studio">Studio</a></li>
+    <li><a href="/insights">Insights</a></li>
+  </ul>
+  <div>
+    <div class="mobile-foot">
+      <a href="mailto:hello@developeroffice.com">hello@developeroffice.com</a><br>
+      <a href="tel:+94777552555">+94 77 755 2555</a><br>
+      Nugegoda, Colombo
+    </div>
+    <a href="/contact/start-a-project" class="btn">Start a Project <span class="arw">&rarr;</span></a>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ 01 · HERO ============ -->
+<section class="hero wrap" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <span class="eyebrow">Engineering studio &middot; Colombo</span>
+  <h1>
+    <span class="ln"><span>We build</span></span>
+    <span class="ln"><span>software</span></span>
+    <span class="ln"><span>that&nbsp;matters.</span></span>
+  </h1>
+  <p class="hero-sub">Research-driven engineering for complex products and intelligent systems.</p>
+  <p class="hero-intro">Developer Office is a software engineering studio in Colombo. For thirty years we've combined research, AI engineering and product delivery in a single dedicated team — taking hard problems from first question to production, and building systems that hold up in courts, banks, registries and newsrooms.</p>
+  <div class="hero-cta">
+    <a href="/work" class="btn btn-primary">Explore Our Work</a>
+    <a href="/contact/start-a-project" class="btn btn-ghost">Start a Project <span class="arw">&rarr;</span></a>
+  </div>
+  <div class="hero-corner">&copy;2026<br>Nugegoda, Colombo</div>
+</section>
+
+<!-- ============ 02 · OPENING STATEMENT ============ -->
+<section class="opening wrap rv">
+  <h2 class="opening-h">Complex problems deserve serious engineering.</h2>
+  <div class="opening-body">
+    <p>Most software problems have a known shape and an off-the-shelf answer. The ones we take on don't. They sit at the intersection of <strong>software engineering, artificial intelligence, applied research and product development</strong> — where the right approach has to be found before it can be built, and where "mostly working" isn't a finish line.</p>
+    <div>
+      <p>We operate across all four disciplines inside one team, on purpose. Research informs what we build. Engineering makes it real. Product thinking keeps it usable. And because the people doing each are colleagues rather than separate vendors, nothing important gets lost in the handoff.</p>
+      <ul class="disciplines">
+        <li>Software engineering</li><li>Artificial intelligence</li><li>Applied research</li><li>Product development</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · PROOF ============ -->
+<section class="proof wrap">
+  <span class="eyebrow rv">Why teams trust us</span>
+  <div class="proof-rule rv"></div>
+  <div class="stats">
+    <div class="stat rv"><div class="num"><span class="count" data-to="30">0</span><span class="u"> yrs</span></div><div class="lab">of engineering practice, from Colombo.</div></div>
+    <div class="stat rv"><div class="num"><span class="count" data-to="97">0</span><span class="u">%</span></div><div class="lab">Sinhala &amp; Tamil OCR accuracy, on scripts most labs skip.</div></div>
+    <div class="stat rv"><div class="num txt">Fortune&nbsp;<span class="u">500</span></div><div class="lab">financial platform engineered for deterministic execution.</div></div>
+    <div class="stat rv"><div class="num txt">One&nbsp;<span class="u">team</span></div><div class="lab">research, AI and product engineering under one roof.</div></div>
+  </div>
+  <p class="proof-note rv">Every number on this site is something we can show you. If we can't verify it, we don't publish it.</p>
+</section>
+
+<!-- ============ 04 · SELECTED WORK ============ -->
+<section class="work wrap">
+  <div class="work-head rv">
+    <h2>The proof is the projects.</h2>
+    <p>We don't lead with promises. We lead with systems that are running now — in language technology, legal AI, financial infrastructure and autonomous agents.</p>
+  </div>
+  <div class="work-grid">
+
+    <a href="/work/sinhala-tamil-ocr" class="pcard rv">
+      <div class="pcard-media"><div class="viz" data-viz="ocr"></div></div>
+      <div class="pcard-body">
+        <span class="tag">Language</span>
+        <h3>Sinhala &amp; Tamil OCR</h3>
+        <p>Optical character recognition for Sinhala and Tamil at 97% accuracy, digitising archives, court records and print collections at scale.</p>
+        <span class="go">View case <span class="arw">&rarr;</span></span>
+      </div>
+    </a>
+
+    <a href="/work/asklex-law" class="pcard rv">
+      <div class="pcard-media"><div class="viz" data-viz="legal"></div></div>
+      <div class="pcard-body">
+        <span class="tag">Legal AI</span>
+        <h3>AskLex.law</h3>
+        <p>A legal research assistant for Sri Lankan law: statute and case-law questions answered in seconds, with citations a lawyer can verify.</p>
+        <span class="go">View case <span class="arw">&rarr;</span></span>
+      </div>
+    </a>
+
+    <a href="/work/financial-platform-engineering" class="pcard rv">
+      <div class="pcard-media"><div class="viz" data-viz="finance"></div></div>
+      <div class="pcard-body">
+        <span class="tag">Finance</span>
+        <h3>Financial Platform Engineering</h3>
+        <p>Product engineering for a Fortune 500 financial platform: high-volume workflows, deterministic execution, long-term maintainability.</p>
+        <span class="go">View case <span class="arw">&rarr;</span></span>
+      </div>
+    </a>
+
+    <a href="/work/ai-agent-systems" class="pcard rv">
+      <div class="pcard-media"><div class="viz" data-viz="agents"></div></div>
+      <div class="pcard-body">
+        <span class="tag">Agents</span>
+        <h3>AI Agent Systems</h3>
+        <p>Autonomous and semi-autonomous agents that research, draft and monitor, with permissioned access and workflows configured per operation.</p>
+        <span class="go">View case <span class="arw">&rarr;</span></span>
+      </div>
+    </a>
+
+  </div>
+  <div class="work-all rv"><a href="/work" class="link-arw">View all work <span class="arw">&rarr;</span></a></div>
+</section>
+
+<!-- ============ 05 · BUILT FOR REALITY ============ -->
+<section class="reality wrap">
+  <h2 class="rv">Built for the systems people actually use.</h2>
+  <div class="reality-body">
+    <p class="rv">Courts. Banks. Government registries. Newsrooms. Archives. The places our software runs don't tolerate approximations, and they don't get to restart. So we design every component to survive contact with real users, real data and real deadlines — and to keep working long after launch.</p>
+    <ul class="institutions rv">
+      <li>Courts &amp; legal <span>01</span></li>
+      <li>Banks &amp; finance <span>02</span></li>
+      <li>Government registries <span>03</span></li>
+      <li>Newsrooms <span>04</span></li>
+      <li>National archives <span>05</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 06 · AI ============ -->
+<section class="ai wrap">
+  <span class="eyebrow rv">Applied AI</span>
+  <h2 class="rv">Intelligence, engineered.</h2>
+  <p class="ai-lede rv">We don't treat AI as a marketing layer. We treat it as engineering: retrieval you can audit, agents with permissioned access, models trained for the scripts and domains the big labs overlook, and a human in the loop wherever a human belongs.</p>
+  <div class="ai-strands">
+    <div class="strand rv"><span class="tag">Language AI</span><p>Sinhala &amp; Tamil OCR at 97%, built on models trained for scripts the large labs ignore.</p></div>
+    <div class="strand rv"><span class="tag">Legal intelligence</span><p>AskLex.law: retrieval-grade AI for Sri Lankan law, with checkable citations.</p></div>
+    <div class="strand rv"><span class="tag">Financial platforms</span><p>Deterministic, auditable engineering for high-volume financial workflows.</p></div>
+    <div class="strand rv"><span class="tag">AI agents</span><p>Systems that research, draft and monitor, with permissioned access and configurable workflows.</p></div>
+  </div>
+  <div class="ai-link rv"><a href="/capabilities/ai-engineering" class="link-arw">How we think about AI <span class="arw">&rarr;</span></a></div>
+</section>
+
+<!-- ============ 07 · METHOD ============ -->
+<section class="method wrap">
+  <h2 class="rv">Five stages, from first question to running system.</h2>
+  <div class="steps" id="steps">
+    <div class="step rv"><div class="n">01</div><h3>Understand</h3><p>The organisation, its users, its constraints, and the actual problem.</p></div>
+    <div class="step rv"><div class="n">02</div><h3>Model</h3><p>Research the problem and define the technical approach before committing to a build.</p></div>
+    <div class="step rv"><div class="n">03</div><h3>Build</h3><p>Design and engineer the system.</p></div>
+    <div class="step rv"><div class="n">04</div><h3>Validate</h3><p>Test against real-world requirements, not demo conditions.</p></div>
+    <div class="step rv"><div class="n">05</div><h3>Operate</h3><p>Deploy, measure, improve and maintain.</p></div>
+  </div>
+  <div class="ai-link rv" style="margin-top:var(--space-7)"><a href="/studio/approach" class="link-arw">Our approach in detail <span class="arw">&rarr;</span></a></div>
+</section>
+
+<!-- ============ 08 · INSIGHTS ============ -->
+<section class="insights wrap">
+  <h2 class="rv">We publish what we learn.</h2>
+  <div class="art-grid">
+    <a href="/insights/why-sinhala-ocr-took-30-years" class="art rv">
+      <span class="tag">Research</span>
+      <h3>Why Sinhala OCR Took 30 Years: Notes from a 97% Accuracy Run</h3>
+      <div class="meta"><span>6.12.26</span><span class="arw">&rarr;</span></div>
+    </a>
+    <a href="/insights/asklex-citable-legal-ai" class="art rv">
+      <span class="tag">Product</span>
+      <h3>AskLex.law: What It Takes to Make Legal AI Citable</h3>
+      <div class="meta"><span>5.28.26</span><span class="arw">&rarr;</span></div>
+    </a>
+    <a href="/insights/agents-in-production" class="art rv">
+      <span class="tag">Engineering</span>
+      <h3>Agents in Production: What Survived Contact with Real Workflows</h3>
+      <div class="meta"><span>4.30.26</span><span class="arw">&rarr;</span></div>
+    </a>
+  </div>
+  <div class="insights-link rv"><a href="/insights" class="link-arw">Read the Insights <span class="arw">&rarr;</span></a></div>
+</section>
+
+<!-- ============ 09 · CLOSING ============ -->
+<section class="closing wrap">
+  <span class="eyebrow rv">Let's work</span>
+  <h2 class="rv">Have a difficult&nbsp;problem?<br><span class="l2">Let's figure out what to build.</span></h2>
+  <p class="rv">A single engineering studio built for teams shipping at scale. We work directly with you — scoping, staffing and shipping the system end-to-end — from Colombo, for thirty years.</p>
+  <div class="closing-cta rv">
+    <a href="/contact/start-a-project" class="btn">Start a Project <span class="arw">&rarr;</span></a>
+    <a href="mailto:hello@developeroffice.com" class="closing-alt">Talk with an engineer</a>
+  </div>
+  <div class="closing-contact rv">
+    <a href="mailto:hello@developeroffice.com">hello@developeroffice.com</a>
+    <a href="tel:+94777552555">+94 77 755 2555</a>
+    <span>Nugegoda, Colombo</span>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="fb-name">Developer Office</div>
+      <p>Research-driven engineering. Software that matters. Nugegoda, Colombo.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/work">Work</a></li>
+        <li><a href="/capabilities">Capabilities</a></li>
+        <li><a href="/studio">Studio</a></li>
+        <li><a href="/insights">Insights</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Work</h4>
+      <ul>
+        <li><a href="/work/sinhala-tamil-ocr">Sinhala &amp; Tamil OCR</a></li>
+        <li><a href="/work/asklex-law">AskLex.law</a></li>
+        <li><a href="/work/financial-platform-engineering">Financial Platforms</a></li>
+        <li><a href="/work/ai-agent-systems">AI Agent Systems</a></li>
+        <li><a href="/work/data-protection">Data Protection</a></li>
+        <li><a href="/work/product-engineering">Product Engineering</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:hello@developeroffice.com">hello@developeroffice.com</a></li>
+        <li><a href="tel:+94777552555">+94 77 755 2555</a></li>
+        <li><a href="https://maps.google.com/?q=208+Stanley+Thilakaratne+Mawatha,+Nugegoda">Nugegoda, Colombo</a></li>
+        <li><a href="/contact/start-a-project">Start a Project &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy;2026 Developer Office. All rights reserved.</span>
+    <span class="links"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+  </div>
+</footer>
+
+<!-- mobile persistent CTA -->
+<div class="action-bar" id="actionBar">
+  <a href="/contact/start-a-project" class="btn btn-primary">Start a Project <span class="arw">&rarr;</span></a>
+</div>
+
+<script>
+// email placeholder note: current site uses an obfuscated address; hello@ used as a readable stand-in.
+document.body.classList.add('reveal-on');
+
+/* ---- header solid + hide/show ---- */
+const header=document.getElementById('header');
+const actionBar=document.getElementById('actionBar');
+let lastY=0;
+function onScroll(){
+  const y=window.scrollY;
+  header.classList.toggle('solid',y>80);
+  if(y>lastY&&y>400){header.classList.add('hide');}else{header.classList.remove('hide');}
+  actionBar.classList.toggle('show',y>window.innerHeight*0.9);
+  lastY=y;
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+
+/* ---- mobile menu ---- */
+const toggle=document.getElementById('menuToggle');
+const menu=document.getElementById('mobileMenu');
+toggle.addEventListener('click',()=>{
+  const open=menu.classList.toggle('open');
+  toggle.setAttribute('aria-expanded',open);
+  menu.setAttribute('aria-hidden',!open);
+  toggle.textContent=open?'Close':'Menu';
+  document.body.style.overflow=open?'hidden':'';
+});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  menu.classList.remove('open');toggle.textContent='Menu';
+  toggle.setAttribute('aria-expanded',false);document.body.style.overflow='';
+}));
+
+/* ---- reveal on scroll ---- */
+const rvEls=document.querySelectorAll('.rv');
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+rvEls.forEach(el=>io.observe(el));
+// fail-safe: never leave content hidden if the observer is missed
+setTimeout(()=>rvEls.forEach(el=>el.classList.add('in')),1600);
+
+/* ---- count-up ---- */
+const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+const cio=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,to=+el.dataset.to;cio.unobserve(el);
+    if(reduce){el.textContent=to;return;}
+    const dur=850,t0=performance.now();
+    function tick(now){
+      const p=Math.min((now-t0)/dur,1);
+      el.textContent=Math.round((1-Math.pow(1-p,3))*to);
+      if(p<1)requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+},{threshold:0.5});
+document.querySelectorAll('.count').forEach(el=>cio.observe(el));
+
+/* ---- method steps light up in sequence ---- */
+const stepEls=[...document.querySelectorAll('.step')];
+const sio=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      stepEls.forEach((s,i)=>setTimeout(()=>s.classList.add('lit'),i*120));
+      sio.disconnect();
+    }
+  });
+},{threshold:0.4});
+if(stepEls[0])sio.observe(document.getElementById('steps'));
+
+/* ---- inject restrained line-art visuals into project cards ---- */
+const vizDefs={
+  ocr:`<svg viewBox='0 0 320 200' preserveAspectRatio='xMidYMid slice' xmlns='http://www.w3.org/2000/svg'>
+    <rect width='320' height='200' fill='#111'/>
+    <g stroke='#3155FF' stroke-width='1' opacity='.85'>
+      <path d='M40 60 q10 -18 20 0 q10 18 20 0' fill='none'/>
+      <path d='M90 60 h4 M96 50 v20 M108 50 q12 0 12 10 q0 10 -12 10' fill='none'/>
+      <path d='M140 50 v20 M140 60 q10 -10 20 0 v10' fill='none'/>
+    </g>
+    <g stroke='#4a4a44' stroke-width='1'>
+      <line x1='40' y1='95' x2='280' y2='95'/><line x1='40' y1='112' x2='280' y2='112'/>
+      <line x1='40' y1='129' x2='230' y2='129'/><line x1='40' y1='146' x2='265' y2='146'/>
+    </g>
+    <rect x='36' y='40' width='120' height='40' fill='none' stroke='#3155FF' stroke-dasharray='3 3'/>
+    <text x='40' y='178' fill='#7d7d78' font-family='monospace' font-size='9'>SI / TA · 97% ACCURACY</text>
+  </svg>`,
+  legal:`<svg viewBox='0 0 320 200' preserveAspectRatio='xMidYMid slice' xmlns='http://www.w3.org/2000/svg'>
+    <rect width='320' height='200' fill='#111'/>
+    <g stroke='#4a4a44' stroke-width='1'>
+      <rect x='40' y='40' width='150' height='120' fill='none'/>
+      <line x1='55' y1='62' x2='175' y2='62'/><line x1='55' y1='78' x2='175' y2='78'/>
+      <line x1='55' y1='94' x2='150' y2='94'/><line x1='55' y1='110' x2='175' y2='110'/>
+    </g>
+    <g stroke='#3155FF' stroke-width='1.5'>
+      <circle cx='190' cy='94' r='4' fill='#3155FF'/>
+      <path d='M190 94 C 230 94 235 60 265 60' fill='none'/>
+      <circle cx='265' cy='60' r='4' fill='none'/>
+    </g>
+    <text x='40' y='182' fill='#7d7d78' font-family='monospace' font-size='9'>ANSWER &#8594; CITATION</text>
+  </svg>`,
+  finance:`<svg viewBox='0 0 320 200' preserveAspectRatio='xMidYMid slice' xmlns='http://www.w3.org/2000/svg'>
+    <rect width='320' height='200' fill='#111'/>
+    <g stroke='#4a4a44' stroke-width='1'>
+      <line x1='40' y1='150' x2='280' y2='150'/>
+      ${Array.from({length:9},(_,i)=>`<line x1='${52+i*26}' y1='150' x2='${52+i*26}' y2='${150-((i*i*1.6)%70+18)}' stroke='#3155FF' stroke-width='6'/>`).join('')}
+    </g>
+    <text x='40' y='178' fill='#7d7d78' font-family='monospace' font-size='9'>DETERMINISTIC · HIGH-VOLUME</text>
+  </svg>`,
+  agents:`<svg viewBox='0 0 320 200' preserveAspectRatio='xMidYMid slice' xmlns='http://www.w3.org/2000/svg'>
+    <rect width='320' height='200' fill='#111'/>
+    <g stroke='#3155FF' stroke-width='1'>
+      <circle cx='160' cy='90' r='16' fill='none' stroke-width='1.5'/>
+      <circle cx='70' cy='55' r='9' fill='none'/><circle cx='70' cy='125' r='9' fill='none'/>
+      <circle cx='250' cy='55' r='9' fill='none'/><circle cx='250' cy='125' r='9' fill='none'/>
+      <line x1='79' y1='58' x2='146' y2='84' stroke='#4a4a44'/>
+      <line x1='79' y1='122' x2='146' y2='96' stroke='#4a4a44'/>
+      <line x1='176' y1='84' x2='241' y2='58' stroke='#4a4a44'/>
+      <line x1='176' y1='96' x2='241' y2='122' stroke='#4a4a44'/>
+    </g>
+    <text x='40' y='182' fill='#7d7d78' font-family='monospace' font-size='9'>PERMISSIONED · PER-OPERATION</text>
+  </svg>`
+};
+document.querySelectorAll('.viz').forEach(v=>{v.innerHTML=vizDefs[v.dataset.viz]||'';});
+</script>
+</body>
+</html>

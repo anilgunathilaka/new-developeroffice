@@ -1,0 +1,16 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{meta.title}}</title>
+<meta name="description" content="{{meta.description}}">
+{{#if meta.keywords}}<meta name="keywords" content="{{meta.keywords}}">{{/if}}
+{{#if meta.canonical}}<link rel="canonical" href="{{meta.canonical}}">{{/if}}
+<meta name="theme-color" content="#F7F6F2">
+<meta property="og:title" content="{{meta.title}}">
+<meta property="og:description" content="{{meta.description}}">
+<meta property="og:type" content="website">
+{{#if meta.canonical}}<meta property="og:url" content="{{meta.canonical}}">{{/if}}
+{{#if meta.ogImage}}<meta property="og:image" content="{{meta.ogImage}}">{{/if}}
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/SpaceGrotesk-Bold.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/Inter-Regular.woff2" crossorigin>
+{{#if meta.jsonLd}}<script type="application/ld+json">{{{json meta.jsonLd}}}</script>{{/if}}

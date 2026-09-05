@@ -1,0 +1,25 @@
+/* pages/work-detail.css — case-study template (strategy.md §9) */
+.cs{padding-top:150px}
+.cs-hero .tag{display:block;margin-bottom:var(--space-4)}
+.cs-hero h1{font-size:clamp(34px,6vw,88px);letter-spacing:-.03em;max-width:16ch}
+.cs-hero .descriptor{margin-top:var(--space-5);color:var(--mid-grey);font-size:clamp(18px,2vw,22px);max-width:54ch}
+.cs-media{margin:var(--space-8) 0;aspect-ratio:16/8;border:1px solid var(--soft-grey);border-radius:var(--radius);overflow:hidden}
+.cs-media .viz svg{width:100%;height:100%}
+.cs-section{display:grid;grid-template-columns:120px 1fr;gap:var(--space-6);padding:var(--space-7) 0;border-top:1px solid var(--soft-grey)}
+.cs-section .n{font-family:var(--mono);font-size:13px;color:var(--cobalt);letter-spacing:.08em}
+.cs-section h2{font-size:clamp(22px,2.6vw,32px);margin-bottom:var(--space-4)}
+.cs-section p{color:var(--near-black);max-width:60ch}
+.cs-section.question p{font-family:var(--display);font-size:clamp(24px,3.4vw,44px);color:var(--cobalt);letter-spacing:-.02em;line-height:1.1;max-width:18ch}
+.cs-result .big{font-family:var(--display);font-weight:600;font-size:clamp(40px,6vw,88px);letter-spacing:-.03em;line-height:1}
+.cs-learned p{font-family:var(--display);font-size:clamp(22px,2.8vw,34px);letter-spacing:-.02em;line-height:1.2;max-width:24ch}
+.cs-tech{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.cs-tech li{font-family:var(--mono);font-size:12.5px;border:1px solid var(--soft-grey);border-radius:var(--radius-sm);padding:6px 12px;color:var(--mid-grey)}
+.cs-related{margin-top:var(--space-8)}
+.cs-related-grid{margin-top:var(--space-5);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6)}
+.cs-cta{margin-top:var(--space-9);padding:var(--space-8) var(--page-x);margin-inline:calc(-1 * var(--page-x));background:var(--near-black);color:var(--off-white)}
+.cs-cta h2{font-size:clamp(26px,3.4vw,44px);max-width:20ch}
+.cs-cta .btn{margin-top:var(--space-5);background:var(--cobalt);border-color:var(--cobalt)}
+@media (max-width:760px){
+  .cs-section{grid-template-columns:1fr;gap:var(--space-3)}
+  .cs-related-grid{grid-template-columns:1fr}
+}

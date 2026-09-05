@@ -1,0 +1,15 @@
+<article class="article wrap">
+  <span class="tag rv">{{article.category}}</span>
+  <h1 class="rv">{{article.title}}</h1>
+  <p class="standfirst rv">{{article.subtitle}}</p>
+  <div class="meta rv">
+    <span>{{#if (eq article.author '[AUTHOR REQUIRED]')}}<span class="needs-content">[AUTHOR REQUIRED]</span>{{else}}{{article.author}}{{/if}}</span>
+    <span>{{formatDate article.date}}</span>
+    <span>{{#if (eq article.readingTime '[X min]')}}<span class="needs-content">[X min]</span>{{else}}{{article.readingTime}}{{/if}}</span>
+  </div>
+  <div class="body rv">
+    <p>{{article.summary}}</p>
+    <p class="needs-content">[CONTENT REQUIRED — full article body]</p>
+  </div>
+  <div class="cs-cta rv" style="margin-top:var(--space-9)"><h2>Working on something like this?</h2>{{> button href="/contact/start-a-project" label="Start a Project" arrow=true}}</div>
+</article>

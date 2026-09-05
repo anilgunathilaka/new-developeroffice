@@ -1,0 +1,120 @@
+{{! SECTION 01 — HERO }}
+<section class="hero wrap" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <span class="eyebrow">Engineering studio &middot; Colombo</span>
+  <h1>
+    <span class="ln"><span>We build</span></span>
+    <span class="ln"><span>software</span></span>
+    <span class="ln"><span>that&nbsp;matters.</span></span>
+  </h1>
+  <p class="hero-sub">Research-driven engineering for complex products and intelligent systems.</p>
+  <p class="hero-intro">Developer Office is a software engineering studio in Colombo. For thirty years we've combined research, AI engineering and product delivery in a single dedicated team — taking hard problems from first question to production, and building systems that hold up in courts, banks, registries and newsrooms.</p>
+  <div class="hero-cta">
+    {{> button href="/work" label="Explore Our Work" variant="btn-primary"}}
+    {{> button href="/contact/start-a-project" label="Start a Project" variant="btn-ghost" arrow=true}}
+  </div>
+  <div class="hero-corner">&copy;{{year}}<br>Nugegoda, Colombo</div>
+</section>
+
+{{! SECTION 02 — OPENING STATEMENT }}
+<section class="opening wrap rv">
+  <h2 class="opening-h">Complex problems deserve serious engineering.</h2>
+  <div class="opening-body">
+    <p>Most software problems have a known shape and an off-the-shelf answer. The ones we take on don't. They sit at the intersection of <strong>software engineering, artificial intelligence, applied research and product development</strong> — where the right approach has to be found before it can be built, and where "mostly working" isn't a finish line.</p>
+    <div>
+      <p>We operate across all four disciplines inside one team, on purpose. Research informs what we build. Engineering makes it real. Product thinking keeps it usable. And because the people doing each are colleagues rather than separate vendors, nothing important gets lost in the handoff.</p>
+      <ul class="disciplines">
+        <li>Software engineering</li><li>Artificial intelligence</li><li>Applied research</li><li>Product development</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{{! SECTION 03 — PROOF }}
+<section class="proof wrap">
+  <span class="eyebrow rv">Why teams trust us</span>
+  <div class="proof-rule rv"></div>
+  <div class="stats">
+    {{#each stats}}{{> stat this}}{{/each}}
+  </div>
+  <p class="proof-note rv">Every number on this site is something we can show you. If we can't verify it, we don't publish it.</p>
+</section>
+
+{{! SECTION 04 — SELECTED WORK }}
+<section class="work wrap">
+  <div class="work-head rv">
+    <h2>The proof is the projects.</h2>
+    <p>We don't lead with promises. We lead with systems that are running now — in language technology, legal AI, financial infrastructure and autonomous agents.</p>
+  </div>
+  <div class="work-grid">
+    {{#each featured}}{{> project-card this}}{{/each}}
+  </div>
+  <div class="work-all rv"><a href="/work" class="link-arw">View all work <span class="arw">&rarr;</span></a></div>
+</section>
+
+{{! SECTION 05 — BUILT FOR REALITY }}
+<section class="reality wrap">
+  <h2 class="rv">Built for the systems people actually use.</h2>
+  <div class="reality-body">
+    <p class="rv">Courts. Banks. Government registries. Newsrooms. Archives. The places our software runs don't tolerate approximations, and they don't get to restart. So we design every component to survive contact with real users, real data and real deadlines — and to keep working long after launch.</p>
+    <ul class="institutions rv">
+      <li>Courts &amp; legal <span>01</span></li>
+      <li>Banks &amp; finance <span>02</span></li>
+      <li>Government registries <span>03</span></li>
+      <li>Newsrooms <span>04</span></li>
+      <li>National archives <span>05</span></li>
+    </ul>
+  </div>
+</section>
+
+{{! SECTION 06 — AI }}
+<section class="ai wrap">
+  <span class="eyebrow rv">Applied AI</span>
+  <h2 class="rv">Intelligence, engineered.</h2>
+  <p class="ai-lede rv">We don't treat AI as a marketing layer. We treat it as engineering: retrieval you can audit, agents with permissioned access, models trained for the scripts and domains the big labs overlook, and a human in the loop wherever a human belongs.</p>
+  <div class="ai-strands">
+    <div class="strand rv"><span class="tag">Language AI</span><p>Sinhala &amp; Tamil OCR at 97%, built on models trained for scripts the large labs ignore.</p></div>
+    <div class="strand rv"><span class="tag">Legal intelligence</span><p>AskLex.law: retrieval-grade AI for Sri Lankan law, with checkable citations.</p></div>
+    <div class="strand rv"><span class="tag">Financial platforms</span><p>Deterministic, auditable engineering for high-volume financial workflows.</p></div>
+    <div class="strand rv"><span class="tag">AI agents</span><p>Systems that research, draft and monitor, with permissioned access and configurable workflows.</p></div>
+  </div>
+  <div class="ai-link rv"><a href="/capabilities/ai-engineering" class="link-arw">How we think about AI <span class="arw">&rarr;</span></a></div>
+</section>
+
+{{! SECTION 07 — METHOD }}
+<section class="method wrap">
+  <h2 class="rv">Five stages, from first question to running system.</h2>
+  <div class="steps" id="steps">
+    <div class="step rv"><div class="n">01</div><h3>Understand</h3><p>The organisation, its users, its constraints, and the actual problem.</p></div>
+    <div class="step rv"><div class="n">02</div><h3>Model</h3><p>Research the problem and define the technical approach before committing to a build.</p></div>
+    <div class="step rv"><div class="n">03</div><h3>Build</h3><p>Design and engineer the system.</p></div>
+    <div class="step rv"><div class="n">04</div><h3>Validate</h3><p>Test against real-world requirements, not demo conditions.</p></div>
+    <div class="step rv"><div class="n">05</div><h3>Operate</h3><p>Deploy, measure, improve and maintain.</p></div>
+  </div>
+  <div class="ai-link rv" style="margin-top:var(--space-7)"><a href="/studio/approach" class="link-arw">Our approach in detail <span class="arw">&rarr;</span></a></div>
+</section>
+
+{{! SECTION 08 — INSIGHTS }}
+<section class="insights-teaser wrap">
+  <h2 class="rv">We publish what we learn.</h2>
+  <div class="art-grid">
+    {{#each insights}}{{> article-card this}}{{/each}}
+  </div>
+  <div class="insights-link rv"><a href="/insights" class="link-arw">Read the Insights <span class="arw">&rarr;</span></a></div>
+</section>
+
+{{! SECTION 09 — CLOSING }}
+<section class="closing wrap">
+  <span class="eyebrow rv">Let's work</span>
+  <h2 class="rv">Have a difficult&nbsp;problem?<br><span class="l2">Let's figure out what to build.</span></h2>
+  <p class="rv">A single engineering studio built for teams shipping at scale. We work directly with you — scoping, staffing and shipping the system end-to-end — from Colombo, for thirty years.</p>
+  <div class="closing-cta rv">
+    {{> button href="/contact/start-a-project" label="Start a Project" arrow=true}}
+    <a href="mailto:hello@developeroffice.com" class="closing-alt">Talk with an engineer</a>
+  </div>
+  <div class="closing-contact rv">
+    <a href="mailto:hello@developeroffice.com">hello@developeroffice.com</a>
+    <a href="tel:+94777552555">+94 77 755 2555</a>
+    <span>Nugegoda, Colombo</span>
+  </div>
+</section>

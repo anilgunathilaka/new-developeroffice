@@ -1,0 +1,155 @@
+/* ============================================================
+   main.css
+   Shared layout + component styles used across pages
+   (header, footer, buttons, cards, shared section utilities).
+   Page-specific styles live in /css/pages/*.css (CLAUDE.md §8).
+   ============================================================ */
+
+/* ---------- shared type utilities ---------- */
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mid-grey);display:inline-flex;align-items:center;gap:var(--space-3);
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--cobalt);display:inline-block}
+.wrap{padding-inline:var(--page-x)}
+section{padding-block:clamp(64px,10vw,var(--space-10))}
+
+.link-arw{
+  font-family:var(--mono);font-size:14px;display:inline-flex;gap:10px;align-items:center;
+  border-bottom:1px solid var(--soft-grey);padding-bottom:4px;
+  transition:color var(--t-state),border-color var(--t-state);
+}
+.link-arw:hover{color:var(--cobalt);border-color:var(--cobalt)}
+.link-arw .arw{transition:transform var(--t-state)}
+.link-arw:hover .arw{transform:translateX(4px)}
+
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cobalt)}
+
+/* ---------- buttons ---------- */
+.btn{
+  font-family:var(--body);font-size:15px;font-weight:600;
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  padding:13px 22px;border-radius:var(--radius);border:1px solid var(--near-black);
+  background:var(--near-black);color:var(--off-white);
+  transition:background var(--t-state),transform var(--t-state),border-color var(--t-state),color var(--t-state);
+}
+.btn .arw{transition:transform var(--t-state)}
+.btn:hover{background:var(--cobalt);border-color:var(--cobalt)}
+.btn:hover .arw{transform:translateX(4px)}
+.btn-primary{background:var(--cobalt);border-color:var(--cobalt)}
+.btn-primary:hover{background:var(--cobalt-dark);border-color:var(--cobalt-dark)}
+.btn-ghost{background:transparent;color:var(--near-black)}
+.btn-ghost:hover{background:var(--near-black);color:var(--off-white);border-color:var(--near-black)}
+
+/* ---------- header ---------- */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--space-5) var(--page-x);
+  transition:background var(--t-state),border-color var(--t-state),transform 260ms var(--ease);
+  border-bottom:1px solid transparent;
+}
+.header.solid{background:rgba(247,246,242,.86);backdrop-filter:blur(10px);border-bottom-color:var(--soft-grey)}
+.header.hide{transform:translateY(-100%)}
+.brand{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.01em}
+.nav{display:flex;align-items:center;gap:var(--space-7)}
+.nav-links{display:flex;gap:var(--space-6)}
+.nav-links a{font-size:15px;font-weight:500;position:relative;padding-block:4px;color:var(--near-black);transition:color var(--t-state)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--cobalt);transition:width var(--t-state)}
+.nav-links a:hover::after,.nav-links a[aria-current="page"]::after{width:100%}
+.nav-links a:hover{color:var(--cobalt)}
+.btn-header{ /* ghost while over hero */ }
+.header:not(.solid) .btn-header{background:transparent;color:var(--near-black);border-color:var(--near-black)}
+.header:not(.solid) .btn-header:hover{background:var(--near-black);color:var(--off-white)}
+.menu-toggle{display:none;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:8px}
+
+/* ---------- mobile menu ---------- */
+.mobile-menu{
+  position:fixed;inset:0;z-index:99;background:var(--near-black);color:var(--off-white);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:96px var(--page-x) var(--space-7);
+  transform:translateY(-100%);transition:transform 300ms var(--ease);
+}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-links{display:flex;flex-direction:column;gap:var(--space-4)}
+.mobile-links a{font-family:var(--display);font-size:clamp(30px,9vw,44px);font-weight:600;letter-spacing:-.02em}
+.mobile-links a:active{color:var(--cobalt)}
+.mobile-foot{font-family:var(--mono);font-size:13px;line-height:2;color:#9b9b95}
+.mobile-foot a{color:var(--off-white)}
+.mobile-menu .btn{width:100%;justify-content:center;margin-top:var(--space-6);background:var(--cobalt);border-color:var(--cobalt);color:var(--off-white)}
+
+/* ---------- reveal utility (JS toggles .in) ---------- */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+
+/* ---------- project card (shared: home + work index) ---------- */
+.pcard{
+  border:1px solid var(--soft-grey);border-radius:var(--radius);overflow:hidden;
+  background:var(--off-white);display:flex;flex-direction:column;
+  transition:border-color var(--t-state);
+}
+.pcard:hover{border-color:var(--near-black)}
+.pcard-media{aspect-ratio:16/10;overflow:hidden;position:relative;background:var(--soft-grey)}
+.pcard-media .viz{position:absolute;inset:0;transition:transform .5s var(--ease)}
+.pcard-media .viz svg{width:100%;height:100%}
+.pcard:hover .pcard-media .viz{transform:scale(1.04)}
+.pcard-body{padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-3);flex:1}
+.pcard h3{font-size:clamp(22px,2.4vw,30px);transition:color var(--t-state)}
+.pcard:hover h3{color:var(--cobalt)}
+.pcard p{font-size:15px;color:var(--mid-grey);flex:1}
+.pcard .go{font-family:var(--mono);font-size:13px;display:inline-flex;gap:8px;align-items:center;opacity:0;transform:translateY(6px);transition:opacity var(--t-state),transform var(--t-state)}
+.pcard:hover .go{opacity:1;transform:none}
+.pcard .go .arw{transition:transform var(--t-state)}
+.pcard:hover .go .arw{transform:translateX(4px)}
+
+/* ---------- article card (shared: home + insights index) ---------- */
+.art{border-top:1px solid var(--near-black);padding-top:var(--space-4);display:flex;flex-direction:column;gap:var(--space-4);min-height:220px}
+.art h3{font-size:22px;line-height:1.15;letter-spacing:-.01em;transition:color var(--t-state);flex:1}
+.art:hover h3{color:var(--cobalt)}
+.art .meta{font-family:var(--mono);font-size:12px;color:var(--mid-grey);display:flex;justify-content:space-between;align-items:center}
+.art .meta .arw{transition:transform var(--t-state)}
+.art:hover .meta .arw{transform:translateX(4px)}
+
+/* ---------- footer ---------- */
+.footer{background:var(--near-black);color:var(--off-white);padding:var(--space-9) var(--page-x) var(--space-6)}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:var(--space-7)}
+.foot-brand .fb-name{font-family:var(--display);font-size:24px;font-weight:600}
+.foot-brand p{font-size:14px;color:#9b9b95;margin-top:var(--space-4);max-width:34ch}
+.foot-col h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7d7d78;font-weight:400;margin-bottom:var(--space-4)}
+.foot-col ul{display:flex;flex-direction:column;gap:var(--space-3)}
+.foot-col a{font-size:15px;color:#d4d4cf;transition:color var(--t-state)}
+.foot-col a:hover{color:var(--cobalt)}
+.foot-bottom{margin-top:var(--space-9);padding-top:var(--space-5);border-top:1px solid #2c2c2c;display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);font-family:var(--mono);font-size:12px;color:#7d7d78}
+.foot-bottom a{color:#7d7d78}
+.foot-bottom a:hover{color:var(--off-white)}
+.foot-bottom .links{display:flex;gap:var(--space-5)}
+
+/* ---------- mobile action bar ---------- */
+.action-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;padding:12px var(--page-x);background:rgba(247,246,242,.92);backdrop-filter:blur(10px);border-top:1px solid var(--soft-grey);transform:translateY(100%);transition:transform 260ms var(--ease)}
+.action-bar.show{transform:translateY(0)}
+.action-bar .btn{width:100%;justify-content:center}
+
+/* ---------- generic page header (interior pages) ---------- */
+.page-hero{padding-top:160px}
+.page-hero .eyebrow{margin-bottom:var(--space-5)}
+.page-hero h1{font-size:clamp(38px,6vw,84px);letter-spacing:-.03em;max-width:16ch}
+.page-hero .sub{margin-top:var(--space-5);color:var(--mid-grey);font-size:clamp(18px,2vw,22px);max-width:52ch}
+
+/* ---------- content-required placeholder treatment (governance §7) ---------- */
+.needs-content{font-family:var(--mono);font-size:13px;color:var(--error);background:rgba(180,50,42,.06);border:1px dashed var(--error);border-radius:var(--radius-sm);padding:2px 8px;display:inline-block}
+
+/* ---------- responsive (shared) ---------- */
+@media (max-width:1000px){
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  body{font-size:17px}
+  .nav-links,.nav .btn-header{display:none}
+  .menu-toggle{display:block}
+  .action-bar{display:block}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:440px){
+  .foot-grid{grid-template-columns:1fr}
+}

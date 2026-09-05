@@ -1,0 +1,9 @@
+/* pages/capabilities.css — Capabilities index */
+.cap-index{padding-top:160px}
+.cap-grid{margin-top:var(--space-8);display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--soft-grey);border-left:1px solid var(--soft-grey)}
+.cap-cell{border-right:1px solid var(--soft-grey);border-bottom:1px solid var(--soft-grey);padding:var(--space-7);transition:background var(--t-state)}
+.cap-cell:hover{background:#efeee9}
+.cap-cell h2{font-size:clamp(22px,2.6vw,30px)}
+.cap-cell p{margin-top:var(--space-4);color:var(--mid-grey);font-size:15.5px}
+.cap-cell .link-arw{margin-top:var(--space-5)}
+@media (max-width:760px){.cap-grid{grid-template-columns:1fr}}
