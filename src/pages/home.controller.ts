@@ -14,7 +14,10 @@ export class HomeController {
     return {
       meta: this.seo.home(),
       stats,
-      featured: work.slice(0, 4), // four featured projects (strategy.md §7.04)
+      featured: work.slice(0, 4).map((item, i) => ({
+        ...item,
+        theme: (['media', 'circle', 'dark', 'light'] as const)[i],
+      })),
       insights: insights.slice(0, 3),
     };
   }

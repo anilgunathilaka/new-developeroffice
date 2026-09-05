@@ -16,7 +16,7 @@
 .cs-tech li{font-family:var(--mono);font-size:12.5px;border:1px solid var(--soft-grey);border-radius:var(--radius-sm);padding:6px 12px;color:var(--mid-grey)}
 .cs-related{margin-top:var(--space-8)}
 .cs-related-grid{margin-top:var(--space-5);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6)}
-.cs-cta{margin-top:var(--space-9);padding:var(--space-8) var(--page-x);margin-inline:calc(-1 * var(--page-x));background:var(--near-black);color:var(--off-white)}
+.cs-cta{margin-top:var(--space-9);padding:var(--space-8) var(--page-x);margin-inline:calc(-1 * var(--page-x));background:var(--charcoal);color:#fff}
 .cs-cta h2{font-size:clamp(26px,3.4vw,44px);max-width:20ch}
 .cs-cta .btn{margin-top:var(--space-5);background:var(--cobalt);border-color:var(--cobalt)}
 @media (max-width:760px){

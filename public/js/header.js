@@ -1,18 +1,15 @@
-/* header.js — solid/hide-on-scroll, mobile menu, action bar. Vanilla JS, no framework. */
+/* header.js — sticky bar, solid-on-scroll, mobile menu, action bar. Vanilla JS, no framework. */
 (function () {
   var header = document.getElementById('header');
   var actionBar = document.getElementById('actionBar');
-  var lastY = 0;
+  var onDarkHero = !!document.querySelector('section.hero#top');
+
+  if (header && !onDarkHero) header.classList.add('solid');
 
   function onScroll() {
     var y = window.scrollY;
-    if (header) {
-      header.classList.toggle('solid', y > 80);
-      if (y > lastY && y > 400) header.classList.add('hide');
-      else header.classList.remove('hide');
-    }
+    if (header && onDarkHero) header.classList.toggle('solid', y > 80);
     if (actionBar) actionBar.classList.toggle('show', y > window.innerHeight * 0.9);
-    lastY = y;
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -27,7 +24,8 @@
       menu.classList.add('open');
       menu.setAttribute('aria-hidden', 'false');
       toggle.setAttribute('aria-expanded', 'true');
-      toggle.textContent = 'Close';
+      toggle.setAttribute('aria-label', 'Close menu');
+      if (header) header.classList.add('menu-open');
       document.body.style.overflow = 'hidden';
       var first = menu.querySelector('a, button');
       if (first) first.focus();
@@ -36,7 +34,8 @@
       menu.classList.remove('open');
       menu.setAttribute('aria-hidden', 'true');
       toggle.setAttribute('aria-expanded', 'false');
-      toggle.textContent = 'Menu';
+      toggle.setAttribute('aria-label', 'Open menu');
+      if (header) header.classList.remove('menu-open');
       document.body.style.overflow = '';
       if (lastFocus) lastFocus.focus();
     }

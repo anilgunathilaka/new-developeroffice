@@ -1,5 +1,5 @@
 <header class="header" id="header">
-  <a href="/" class="brand">Developer Office</a>
+  <a href="/" class="brand">{{> logo}}</a>
   <nav class="nav" aria-label="Primary">
     <ul class="nav-links">
       <li><a href="/work" {{#if (eq meta.nav 'work')}}aria-current="page"{{/if}}>Work</a></li>
@@ -7,7 +7,11 @@
       <li><a href="/studio" {{#if (eq meta.nav 'studio')}}aria-current="page"{{/if}}>Studio</a></li>
       <li><a href="/insights" {{#if (eq meta.nav 'insights')}}aria-current="page"{{/if}}>Insights</a></li>
     </ul>
-    {{> button href="/contact/start-a-project" label="Start a Project" variant="btn-header" arrow=true}}
-    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
   </nav>
+  <div class="nav-end">
+    {{> button href="/contact/start-a-project" label="Start a Project" variant="btn-header" arrow=true}}
+    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <span class="menu-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
 </header>

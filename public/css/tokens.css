@@ -8,24 +8,22 @@
 /* ---------- @font-face (self-hosted; CLAUDE.md §5) ----------
    Drop the woff2 files into /public/fonts. Until then, the
    system-ui fallbacks in the family vars keep the site usable. */
-@font-face{font-family:"Space Grotesk";src:url("/fonts/SpaceGrotesk-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Space Grotesk";src:url("/fonts/SpaceGrotesk-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
-@font-face{font-family:"Space Grotesk";src:url("/fonts/SpaceGrotesk-SemiBold.woff2") format("woff2");font-weight:600;font-display:swap}
-@font-face{font-family:"Space Grotesk";src:url("/fonts/SpaceGrotesk-Bold.woff2") format("woff2");font-weight:700;font-display:swap}
-@font-face{font-family:"Inter";src:url("/fonts/Inter-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Inter";src:url("/fonts/Inter-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
-@font-face{font-family:"Inter";src:url("/fonts/Inter-SemiBold.woff2") format("woff2");font-weight:600;font-display:swap}
-@font-face{font-family:"Space Mono";src:url("/fonts/SpaceMono-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Space Mono";src:url("/fonts/SpaceMono-Bold.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"DM Sans";src:url("/fonts/DMSans-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"DM Sans";src:url("/fonts/DMSans-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"DM Sans";src:url("/fonts/DMSans-SemiBold.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"DM Sans";src:url("/fonts/DMSans-Bold.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"DM Sans";src:url("/fonts/DMSans-Black.woff2") format("woff2");font-weight:900;font-display:swap}
+@font-face{font-family:"Inter";src:url("/fonts/Inter-Black.woff2") format("woff2");font-weight:900;font-display:swap}
 
 :root{
-  /* palette */
-  --off-white:#F7F6F2;
-  --near-black:#111111;
-  --cobalt:#3155FF;        /* accent — strategy.md says #3155FF; live site uses #044ab3. Flip here only. */
-  --cobalt-dark:#2643CC;
-  --soft-grey:#E8E8E3;
-  --mid-grey:#6B6B66;
+  /* palette — from Developer Office business cards */
+  --off-white:#F7F2F6;
+  --near-black:#1C1C1C;
+  --charcoal:#3C3A38;
+  --cobalt:#BD7AB4;
+  --cobalt-dark:#8A4E82;
+  --soft-grey:#E8DFE6;
+  --mid-grey:#6B6469;
   --error:#B4322A;
 
   /* spacing scale */
@@ -43,14 +41,14 @@
   --measure:64ch;
 
   /* type families */
-  --display:"Space Grotesk", system-ui, sans-serif;
-  --body:"Inter", system-ui, sans-serif;
-  --mono:"Space Mono", ui-monospace, "SFMono-Regular", monospace;
+  --display:"DM Sans", system-ui, sans-serif;
+  --body:"DM Sans", system-ui, sans-serif;
+  --mono:"DM Sans", system-ui, sans-serif;
 }
 
 /* ---------- reset ---------- */
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden;max-width:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip;max-width:100%}
 body{
   background:var(--off-white);
   color:var(--near-black);
@@ -59,7 +57,7 @@ body{
   line-height:1.6;
   font-feature-settings:"kern","liga","calt";
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  overflow-x:clip;
 }
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}

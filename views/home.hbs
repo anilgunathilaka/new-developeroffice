@@ -1,30 +1,36 @@
 {{! SECTION 01 — HERO }}
-<section class="hero wrap" id="top">
-  <div class="hero-grid" aria-hidden="true"></div>
-  <span class="eyebrow">Engineering studio &middot; Colombo</span>
-  <h1>
-    <span class="ln"><span>We build</span></span>
-    <span class="ln"><span>software</span></span>
-    <span class="ln"><span>that&nbsp;matters.</span></span>
-  </h1>
-  <p class="hero-sub">Research-driven engineering for complex products and intelligent systems.</p>
-  <p class="hero-intro">Developer Office is a software engineering studio in Colombo. For thirty years we've combined research, AI engineering and product delivery in a single dedicated team — taking hard problems from first question to production, and building systems that hold up in courts, banks, registries and newsrooms.</p>
-  <div class="hero-cta">
-    {{> button href="/work" label="Explore Our Work" variant="btn-primary"}}
-    {{> button href="/contact/start-a-project" label="Start a Project" variant="btn-ghost" arrow=true}}
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-mark" aria-hidden="true">
+    <span>D</span><span>O</span><span class="hero-mark-gap"></span><span>N</span><span>O</span><span>W</span>
   </div>
-  <div class="hero-corner">&copy;{{year}}<br>Nugegoda, Colombo</div>
+  <div class="hero-inner wrap">
+    <h1>
+      <span class="ln"><span>We build software</span></span>
+      <span class="ln"><span>that&nbsp;matters.</span></span>
+    </h1>
+    <p class="hero-sub">Research-driven engineering for complex products and intelligent systems.</p>
+    <div class="hero-cta">
+      {{> button href="/work" label="Explore Our Work" variant="btn-primary"}}
+      {{> button href="/contact/start-a-project" label="Start a Project" variant="btn-ghost" arrow=true}}
+    </div>
+    <div class="scroll-mouse" aria-hidden="true"><div class="scroll-mouse__wheel"></div></div>
+  </div>
 </section>
 
 {{! SECTION 02 — OPENING STATEMENT }}
-<section class="opening wrap rv">
-  <h2 class="opening-h">Complex problems deserve serious engineering.</h2>
-  <div class="opening-body">
-    <p>Most software problems have a known shape and an off-the-shelf answer. The ones we take on don't. They sit at the intersection of <strong>software engineering, artificial intelligence, applied research and product development</strong> — where the right approach has to be found before it can be built, and where "mostly working" isn't a finish line.</p>
-    <div>
-      <p>We operate across all four disciplines inside one team, on purpose. Research informs what we build. Engineering makes it real. Product thinking keeps it usable. And because the people doing each are colleagues rather than separate vendors, nothing important gets lost in the handoff.</p>
-      <ul class="disciplines">
-        <li>Software engineering</li><li>Artificial intelligence</li><li>Applied research</li><li>Product development</li>
+<section class="opening" id="opening">
+  <div class="opening-pin">
+    <div class="opening-stage wrap">
+      <h2 class="opening-h">Complex problems deserve serious engineering.</h2>
+      <div class="opening-copy">
+        <p class="opening-p1">Most software problems have a known shape and an off-the-shelf answer. The ones we take on don't. They sit at the intersection of <strong>software engineering, artificial intelligence, applied research and product development</strong> — where the right approach has to be found before it can be built, and where "mostly working" isn't a finish line.</p>
+      </div>
+      <ul class="opening-line">
+        <li><span>Software engineering</span></li>
+        <li><span>Artificial intelligence</span></li>
+        <li><span>Applied research</span></li>
+        <li><span>Product development</span></li>
       </ul>
     </div>
   </div>
@@ -41,15 +47,30 @@
 </section>
 
 {{! SECTION 04 — SELECTED WORK }}
-<section class="work wrap">
-  <div class="work-head rv">
-    <h2>The proof is the projects.</h2>
-    <p>We don't lead with promises. We lead with systems that are running now — in language technology, legal AI, financial infrastructure and autonomous agents.</p>
+<section class="work" id="work">
+  <div class="work-pin">
+    <div class="work-inner wrap">
+      <div class="work-intro">
+        <h2>The proof is the projects.</h2>
+        <p>We don't lead with promises. We lead with systems that are running now — in language technology, legal AI, financial infrastructure and autonomous agents.</p>
+      </div>
+      <div class="work-cards">
+        {{#each featured}}
+        <a href="/work/{{slug}}" class="work-card work-card--{{theme}}">
+          <div class="work-card-inner">
+            <span class="work-card-label">{{tag}}</span>
+            <div class="work-card-foot">
+              <h3>{{name}}</h3>
+              <p>{{descriptor}}</p>
+              <span class="go">View case <span class="arw">&rarr;</span></span>
+            </div>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+    </div>
   </div>
-  <div class="work-grid">
-    {{#each featured}}{{> project-card this}}{{/each}}
-  </div>
-  <div class="work-all rv"><a href="/work" class="link-arw">View all work <span class="arw">&rarr;</span></a></div>
+  <div class="work-all wrap"><a href="/work" class="link-arw">View all work <span class="arw">&rarr;</span></a></div>
 </section>
 
 {{! SECTION 05 — BUILT FOR REALITY }}
