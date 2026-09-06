@@ -2,13 +2,9 @@
 (function () {
   var header = document.getElementById('header');
   var actionBar = document.getElementById('actionBar');
-  var onDarkHero = !!document.querySelector('section.hero#top');
-
-  if (header && !onDarkHero) header.classList.add('solid');
-
   function onScroll() {
     var y = window.scrollY;
-    if (header && onDarkHero) header.classList.toggle('solid', y > 80);
+    if (header) header.classList.toggle('solid', y > 40);
     if (actionBar) actionBar.classList.toggle('show', y > window.innerHeight * 0.9);
   }
   window.addEventListener('scroll', onScroll, { passive: true });

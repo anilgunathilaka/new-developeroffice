@@ -1,68 +1,143 @@
 {{! SECTION 01 — HERO }}
 <section class="hero" id="top">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-mark" aria-hidden="true">
-    <span>D</span><span>O</span><span class="hero-mark-gap"></span><span>N</span><span>O</span><span>W</span>
-  </div>
-  <div class="hero-inner wrap">
-    <h1>
-      <span class="ln"><span>We build software</span></span>
-      <span class="ln"><span>that&nbsp;matters.</span></span>
-    </h1>
-    <p class="hero-sub">Research-driven engineering for complex products and intelligent systems.</p>
-    <div class="hero-cta">
-      {{> button href="/work" label="Explore Our Work" variant="btn-primary"}}
-      {{> button href="/contact/start-a-project" label="Start a Project" variant="btn-ghost" arrow=true}}
+  <div class="hero-stage">
+    <video class="hero-video is-on" id="heroVideo" muted loop playsinline autoplay preload="auto" aria-hidden="true">
+      <source src="{{asset '/videos/developeroffice.mp4'}}" type="video/mp4">
+    </video>
+    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <h1>
+        <span class="ln">We build <em>software</em></span>
+        <span class="ln">that matters.</span>
+      </h1>
+      <p class="hero-sub">Research-driven engineering for <strong>complex products</strong> and <strong>intelligent systems</strong>.</p>
+      <div class="hero-cta">
+        {{> button href="/work" label="Explore Our Work" variant="btn-primary"}}
+        {{> button href="/contact/start-a-project" label="Start a Project" variant="btn-ghost" arrow=true}}
+      </div>
     </div>
-    <div class="scroll-mouse" aria-hidden="true"><div class="scroll-mouse__wheel"></div></div>
+    <div class="hero-projects">
+      <p class="hero-projects-label">Selected work</p>
+      <div class="hero-projects-mask">
+        <div class="hero-projects-track">
+          <ul>
+            {{#each projects}}<li><a href="/work/{{slug}}">{{name}}</a></li>{{/each}}
+          </ul>
+          <ul aria-hidden="true">
+            {{#each projects}}<li><a href="/work/{{slug}}">{{name}}</a></li>{{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 {{! SECTION 02 — OPENING STATEMENT }}
 <section class="opening" id="opening">
   <div class="opening-pin">
-    <div class="opening-stage wrap">
-      <h2 class="opening-h">Complex problems deserve serious engineering.</h2>
-      <div class="opening-copy">
-        <p class="opening-p1">Most software problems have a known shape and an off-the-shelf answer. The ones we take on don't. They sit at the intersection of <strong>software engineering, artificial intelligence, applied research and product development</strong> — where the right approach has to be found before it can be built, and where "mostly working" isn't a finish line.</p>
+  <div class="jt-wrap">
+    <h2 class="opening-h">Complex problems deserve<br>serious engineering.</h2>
+    <p class="opening-p1">Most software problems have a known shape and an off-the-shelf answer. The ones we take on don't. They sit at the intersection of <strong>software engineering, artificial intelligence, applied research and product development</strong> — where the right approach has to be found before it can be built, and where "mostly working" isn't a finish line.</p>
+  </div>
+  <ul class="opening-line">
+    <li>
+      <div class="opening-viz">
+        <img src="{{asset '/images/Software-engineering.webp'}}" alt="" width="800" height="800" loading="lazy">
       </div>
-      <ul class="opening-line">
-        <li><span>Software engineering</span></li>
-        <li><span>Artificial intelligence</span></li>
-        <li><span>Applied research</span></li>
-        <li><span>Product development</span></li>
-      </ul>
-    </div>
+      <span>Software engineering</span>
+    </li>
+    <li>
+      <div class="opening-viz">
+        <img src="{{asset '/images/Artificial-intelligence.webp'}}" alt="" width="800" height="800" loading="lazy">
+      </div>
+      <span>Artificial intelligence</span>
+    </li>
+    <li>
+      <div class="opening-viz">
+        <img src="{{asset '/images/Applied-research.webp'}}" alt="" width="800" height="800" loading="lazy">
+      </div>
+      <span>Applied research</span>
+    </li>
+    <li>
+      <div class="opening-viz">
+        <img src="{{asset '/images/Product-development.webp'}}" alt="" width="800" height="800" loading="lazy">
+      </div>
+      <span>Product development</span>
+    </li>
+  </ul>
   </div>
 </section>
 
 {{! SECTION 03 — PROOF }}
-<section class="proof wrap">
-  <span class="eyebrow rv">Why teams trust us</span>
-  <div class="proof-rule rv"></div>
-  <div class="stats">
-    {{#each stats}}{{> stat this}}{{/each}}
+<section class="proof" id="proof">
+  <div class="proof-pin">
+    <div class="jt-wrap proof-head">
+      <h2>Why teams trust us</h2>
+      <p class="proof-note">Every number on this site is something we can show you. If we can't verify it, we don't publish it.</p>
+    </div>
+    <div class="stats">
+      {{#each stats}}
+      <div class="stat">
+        <div class="lab">{{label}}</div>
+        <div class="num {{#unless countTo}}txt{{/unless}}">
+          {{#if countTo}}<span class="count" data-to="{{countTo}}">0</span>{{else}}{{value}}{{/if}}<span class="u">{{unit}}</span>
+        </div>
+      </div>
+      {{/each}}
+    </div>
   </div>
-  <p class="proof-note rv">Every number on this site is something we can show you. If we can't verify it, we don't publish it.</p>
 </section>
 
 {{! SECTION 04 — SELECTED WORK }}
 <section class="work" id="work">
-  <div class="work-pin">
-    <div class="work-inner wrap">
-      <div class="work-intro">
-        <h2>The proof is the projects.</h2>
-        <p>We don't lead with promises. We lead with systems that are running now — in language technology, legal AI, financial infrastructure and autonomous agents.</p>
-      </div>
+  <div class="jt-wrap">
+    <div class="work-intro">
+      <h2>The proof is the projects.</h2>
+      <p>We don't lead with promises. We lead with systems that are running now — in language technology, legal AI, financial infrastructure and autonomous agents.</p>
+    </div>
+  </div>
+  <div class="work-marquee">
+    <div class="work-marquee-track">
       <div class="work-cards">
         {{#each featured}}
         <a href="/work/{{slug}}" class="work-card work-card--{{theme}}">
           <div class="work-card-inner">
-            <span class="work-card-label">{{tag}}</span>
+            <span class="work-card-view" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div class="work-card-preview" aria-hidden="true">
+              {{#if image}}
+              <img src="{{asset image}}" alt="" width="640" height="640" loading="lazy">
+              {{else}}
+              <span>{{tag}}</span>
+              {{/if}}
+            </div>
             <div class="work-card-foot">
               <h3>{{name}}</h3>
-              <p>{{descriptor}}</p>
-              <span class="go">View case <span class="arw">&rarr;</span></span>
+              <span class="work-card-label">{{tag}}</span>
+            </div>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+      <div class="work-cards" aria-hidden="true">
+        {{#each featured}}
+        <a href="/work/{{slug}}" class="work-card work-card--{{theme}}" tabindex="-1">
+          <div class="work-card-inner">
+            <span class="work-card-view">
+              <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div class="work-card-preview">
+              {{#if image}}
+              <img src="{{asset image}}" alt="" width="640" height="640" loading="lazy">
+              {{else}}
+              <span>{{tag}}</span>
+              {{/if}}
+            </div>
+            <div class="work-card-foot">
+              <h3>{{name}}</h3>
+              <span class="work-card-label">{{tag}}</span>
             </div>
           </div>
         </a>
@@ -70,72 +145,92 @@
       </div>
     </div>
   </div>
-  <div class="work-all wrap"><a href="/work" class="link-arw">View all work <span class="arw">&rarr;</span></a></div>
+  <div class="jt-wrap">
+    <div class="work-all">
+      <a href="/work" class="work-all-btn">View all work
+        <span class="work-all-arw" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
 </section>
 
 {{! SECTION 05 — BUILT FOR REALITY }}
-<section class="reality wrap">
-  <h2 class="rv">Built for the systems people actually use.</h2>
-  <div class="reality-body">
-    <p class="rv">Courts. Banks. Government registries. Newsrooms. Archives. The places our software runs don't tolerate approximations, and they don't get to restart. So we design every component to survive contact with real users, real data and real deadlines — and to keep working long after launch.</p>
-    <ul class="institutions rv">
-      <li>Courts &amp; legal <span>01</span></li>
-      <li>Banks &amp; finance <span>02</span></li>
-      <li>Government registries <span>03</span></li>
-      <li>Newsrooms <span>04</span></li>
-      <li>National archives <span>05</span></li>
+<section class="reality">
+  <div class="jt-wrap">
+    <h2 class="rv">Built for the systems people actually use.</h2>
+    <p class="reality-lede rv">Courts. Banks. Government registries. Newsrooms. Archives. The places our software runs don't tolerate approximations, and they don't get to restart. So we design every component to survive contact with real users, real data and real deadlines — and to keep working long after launch.</p>
+    <ul class="institutions">
+      <li class="rv">Courts &amp; legal <span>01</span></li>
+      <li class="rv">Banks &amp; finance <span>02</span></li>
+      <li class="rv">Government registries <span>03</span></li>
+      <li class="rv">Newsrooms <span>04</span></li>
+      <li class="rv">National archives <span>05</span></li>
     </ul>
   </div>
 </section>
 
 {{! SECTION 06 — AI }}
-<section class="ai wrap">
-  <span class="eyebrow rv">Applied AI</span>
-  <h2 class="rv">Intelligence, engineered.</h2>
-  <p class="ai-lede rv">We don't treat AI as a marketing layer. We treat it as engineering: retrieval you can audit, agents with permissioned access, models trained for the scripts and domains the big labs overlook, and a human in the loop wherever a human belongs.</p>
-  <div class="ai-strands">
-    <div class="strand rv"><span class="tag">Language AI</span><p>Sinhala &amp; Tamil OCR at 97%, built on models trained for scripts the large labs ignore.</p></div>
-    <div class="strand rv"><span class="tag">Legal intelligence</span><p>AskLex.law: retrieval-grade AI for Sri Lankan law, with checkable citations.</p></div>
-    <div class="strand rv"><span class="tag">Financial platforms</span><p>Deterministic, auditable engineering for high-volume financial workflows.</p></div>
-    <div class="strand rv"><span class="tag">AI agents</span><p>Systems that research, draft and monitor, with permissioned access and configurable workflows.</p></div>
+<section class="ai">
+  <div class="jt-wrap">
+    <p class="jt-kicker rv">Applied AI</p>
+    <h2 class="rv">Intelligence, engineered.</h2>
+    <p class="ai-lede rv">We don't treat AI as a marketing layer. We treat it as engineering: retrieval you can audit, agents with permissioned access, models trained for the scripts and domains the big labs overlook, and a human in the loop wherever a human belongs.</p>
+    <div class="ai-strands">
+      <div class="strand rv"><span class="tag">Language AI</span><p>Sinhala &amp; Tamil OCR at 97%, built on models trained for scripts the large labs ignore.</p></div>
+      <div class="strand rv"><span class="tag">Legal intelligence</span><p>AskLex.law: retrieval-grade AI for Sri Lankan law, with checkable citations.</p></div>
+      <div class="strand rv"><span class="tag">Financial platforms</span><p>Deterministic, auditable engineering for high-volume financial workflows.</p></div>
+      <div class="strand rv"><span class="tag">AI agents</span><p>Systems that research, draft and monitor, with permissioned access and configurable workflows.</p></div>
+    </div>
+    <div class="ai-link rv"><a href="/capabilities/ai-engineering" class="jt-link">How we think about AI <span class="arw">&rarr;</span></a></div>
   </div>
-  <div class="ai-link rv"><a href="/capabilities/ai-engineering" class="link-arw">How we think about AI <span class="arw">&rarr;</span></a></div>
 </section>
 
 {{! SECTION 07 — METHOD }}
-<section class="method wrap">
-  <h2 class="rv">Five stages, from first question to running system.</h2>
-  <div class="steps" id="steps">
-    <div class="step rv"><div class="n">01</div><h3>Understand</h3><p>The organisation, its users, its constraints, and the actual problem.</p></div>
-    <div class="step rv"><div class="n">02</div><h3>Model</h3><p>Research the problem and define the technical approach before committing to a build.</p></div>
-    <div class="step rv"><div class="n">03</div><h3>Build</h3><p>Design and engineer the system.</p></div>
-    <div class="step rv"><div class="n">04</div><h3>Validate</h3><p>Test against real-world requirements, not demo conditions.</p></div>
-    <div class="step rv"><div class="n">05</div><h3>Operate</h3><p>Deploy, measure, improve and maintain.</p></div>
+<section class="method">
+  <div class="jt-wrap">
+    <p class="jt-kicker rv">How we work</p>
+    <h2 class="rv">Five stages, from first question to running system.</h2>
+    <div class="steps" id="steps">
+      <div class="step rv"><div class="n">01</div><h3>Understand</h3><p>The organisation, its users, its constraints, and the actual problem.</p></div>
+      <div class="step rv"><div class="n">02</div><h3>Model</h3><p>Research the problem and define the technical approach before committing to a build.</p></div>
+      <div class="step rv"><div class="n">03</div><h3>Build</h3><p>Design and engineer the system.</p></div>
+      <div class="step rv"><div class="n">04</div><h3>Validate</h3><p>Test against real-world requirements, not demo conditions.</p></div>
+      <div class="step rv"><div class="n">05</div><h3>Operate</h3><p>Deploy, measure, improve and maintain.</p></div>
+    </div>
+    <div class="ai-link rv"><a href="/studio/approach" class="jt-link">Our approach in detail <span class="arw">&rarr;</span></a></div>
   </div>
-  <div class="ai-link rv" style="margin-top:var(--space-7)"><a href="/studio/approach" class="link-arw">Our approach in detail <span class="arw">&rarr;</span></a></div>
 </section>
 
 {{! SECTION 08 — INSIGHTS }}
-<section class="insights-teaser wrap">
-  <h2 class="rv">We publish what we learn.</h2>
-  <div class="art-grid">
-    {{#each insights}}{{> article-card this}}{{/each}}
+<section class="insights-teaser">
+  <div class="jt-wrap">
+    <p class="jt-kicker rv">Thinking</p>
+    <h2 class="rv">We publish what we learn.</h2>
+    <div class="art-grid">
+      {{#each insights}}{{> article-card this}}{{/each}}
+    </div>
+    <div class="insights-link rv"><a href="/insights" class="jt-link">Read the Insights <span class="arw">&rarr;</span></a></div>
   </div>
-  <div class="insights-link rv"><a href="/insights" class="link-arw">Read the Insights <span class="arw">&rarr;</span></a></div>
 </section>
 
 {{! SECTION 09 — CLOSING }}
-<section class="closing wrap">
-  <span class="eyebrow rv">Let's work</span>
-  <h2 class="rv">Have a difficult&nbsp;problem?<br><span class="l2">Let's figure out what to build.</span></h2>
-  <p class="rv">A single engineering studio built for teams shipping at scale. We work directly with you — scoping, staffing and shipping the system end-to-end — from Colombo, for thirty years.</p>
-  <div class="closing-cta rv">
-    {{> button href="/contact/start-a-project" label="Start a Project" arrow=true}}
-    <a href="mailto:hello@developeroffice.com" class="closing-alt">Talk with an engineer</a>
-  </div>
-  <div class="closing-contact rv">
-    <a href="mailto:hello@developeroffice.com">hello@developeroffice.com</a>
-    <a href="tel:+94777552555">+94 77 755 2555</a>
-    <span>Nugegoda, Colombo</span>
+<section class="closing">
+  <div class="jt-wrap">
+    <div class="closing-panel rv">
+      <p class="jt-kicker">Let's work</p>
+      <h2>Have a difficult&nbsp;problem?<br><span class="l2">Let's figure out what to build.</span></h2>
+      <p>A single engineering studio built for teams shipping at scale. We work directly with you — scoping, staffing and shipping the system end-to-end — from Colombo, for thirty years.</p>
+      <div class="closing-cta">
+        {{> button href="/contact/start-a-project" label="Start a Project" arrow=true}}
+        <a href="mailto:hello@developeroffice.com" class="closing-alt">Talk with an engineer</a>
+      </div>
+      <div class="closing-contact">
+        <a href="mailto:hello@developeroffice.com">hello@developeroffice.com</a>
+        <a href="tel:+94777552555">+94 77 755 2555</a>
+        <span>Nugegoda, Colombo</span>
+      </div>
+    </div>
   </div>
 </section>

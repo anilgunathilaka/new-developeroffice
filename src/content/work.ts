@@ -8,6 +8,7 @@ export const work: CaseStudy[] = [
     name: 'Sinhala & Tamil OCR',
     tag: 'Language',
     viz: 'ocr',
+    image: '/images/Sinhala-Tamil-OCR.webp',
     descriptor:
       'Optical character recognition for Sinhala and Tamil at 97% accuracy, digitising archives, court records and print collections at scale.',
     context:
@@ -38,6 +39,7 @@ export const work: CaseStudy[] = [
     name: 'AskLex.law',
     tag: 'Legal AI',
     viz: 'legal',
+    image: '/images/AskLex.webp',
     descriptor:
       'A legal research assistant for Sri Lankan law: statute and case-law questions answered in seconds, with citations a lawyer can verify.',
     context:
@@ -68,6 +70,7 @@ export const work: CaseStudy[] = [
     name: 'Financial Platform Engineering',
     tag: 'Finance',
     viz: 'finance',
+    image: '/images/Financial-Platform-Engineering.webp',
     descriptor:
       'Product engineering for a Fortune 500 financial platform: high-volume workflows, deterministic execution, long-term maintainability.',
     context:
@@ -96,6 +99,7 @@ export const work: CaseStudy[] = [
     name: 'AI Agent Systems',
     tag: 'Agents',
     viz: 'agents',
+    image: '/images/AI-Agent-Systems.webp',
     descriptor:
       'Autonomous and semi-autonomous agents that research, draft and monitor, with permissioned access and workflows configured per operation.',
     context:
@@ -123,10 +127,13 @@ export const work: CaseStudy[] = [
 // Additional Work entries that use the same template; specifics marked CONTENT REQUIRED.
 export const workExtra: ProjectCard[] = [
   { slug: 'data-protection', name: 'Data Protection Advisory', tag: 'Compliance', viz: 'compliance',
+    image: '/images/Data-Protection-Advisory.webp',
     descriptor: "DPA-readiness assessment and engineering for organisations handling personal data under Sri Lanka's data-protection regime." },
   { slug: 'product-engineering', name: 'Product Engineering', tag: 'Product', viz: 'product',
+    image: '/images/Product-Engineering.webp',
     descriptor: 'End-to-end product teams — design, build, ship, operate — for founders and institutions that need software done properly.' },
   { slug: 'discovery-research', name: 'Discovery & Research', tag: 'Research', viz: 'research',
+    image: '/images/Discovery-Research.webp',
     descriptor: 'Structured discovery that turns open questions into buildable specs, prototypes and evidence before a build is committed.' },
 ];
 

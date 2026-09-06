@@ -1,5 +1,11 @@
 <a href="/work/{{slug}}" class="pcard rv">
-  <div class="pcard-media"><div class="viz" aria-hidden="true">{{> (concat 'viz/' viz)}}</div></div>
+  <div class="pcard-media">
+    {{#if image}}
+    <img src="{{asset image}}" alt="" width="800" height="500" loading="lazy">
+    {{else}}
+    <div class="viz" aria-hidden="true">{{> (concat 'viz/' viz)}}</div>
+    {{/if}}
+  </div>
   <div class="pcard-body">
     <span class="tag">{{tag}}</span>
     <h3>{{name}}</h3>

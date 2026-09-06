@@ -1,15 +1,12 @@
-/* opening.js — headline is scrubbed to viewport: finishes when
-   half of Section 2 is on screen, then holds when the stage pins.
-   Native scroll only; no wheel lock. */
+/* opening.js — TRIONN Key Facts motion on the four discipline cards.
+   Title holds. Cards rise from below with 3D tilt. Native scroll. */
 (function () {
   var section = document.getElementById('opening');
-  if (!section) return;
+  if (!section || section.hasAttribute('data-static')) return;
 
   var pin = section.querySelector('.opening-pin');
-  var headline = section.querySelector('.opening-h');
-  var p1 = section.querySelector('.opening-p1');
-  var tags = section.querySelectorAll('.opening-line li');
-  if (!pin || !headline || !p1) return;
+  var cards = section.querySelectorAll('.opening-line li');
+  if (!pin || !cards.length) return;
 
   var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
   var mobileMq = window.matchMedia('(max-width: 760px)');
@@ -17,55 +14,54 @@
 
   function clamp(n, a, b) { return n < a ? a : n > b ? b : n; }
   function range(p, a, b) { return clamp((p - a) / (b - a), 0, 1); }
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+  function mix(a, b, t) { return a + (b - a) * t; }
+
+  var beats = [
+    { a: 0.00, b: 0.46, y: 82, x: -10, rx: 34, ry: -18, rot: -10, sc: 0.82, op: 0.22 },
+    { a: 0.10, b: 0.58, y: 70, x: -3, rx: 26, ry: -8, rot: -3, sc: 0.88, op: 0.16 },
+    { a: 0.20, b: 0.68, y: 70, x: 3, rx: 26, ry: 8, rot: 3, sc: 0.88, op: 0.16 },
+    { a: 0.28, b: 0.80, y: 82, x: 10, rx: 34, ry: 18, rot: 10, sc: 0.82, op: 0.20 }
+  ];
 
   function isStatic() {
     return reduceMq.matches || mobileMq.matches;
   }
 
-  function setIn(el, on) {
-    if (on) el.classList.add('is-in');
-    else el.classList.remove('is-in');
-  }
-
-  function state() {
-    var run = section.offsetHeight - window.innerHeight;
+  function progress() {
+    var run = section.offsetHeight - pin.offsetHeight;
     var top = section.getBoundingClientRect().top;
-    var p = run <= 0 ? 1 : clamp(-top / run, 0, 1);
-    var pinTop = pin.getBoundingClientRect().top;
-    var enter = clamp(1 - pinTop / window.innerHeight, 0, 1);
-    return { p: p, enter: enter };
+    if (run <= 0) return 1;
+    return clamp(-top / run, 0, 1);
   }
 
-  function applyHeadline(s) {
-    var t = s.p > 0 ? 1 : range(s.enter, 0, 0.5);
-    var x = (1 - t) * window.innerWidth * 0.38;
-    var y = (1 - t) * window.innerHeight * 0.18;
-    headline.style.opacity = String(Math.min(1, t * 1.4));
-    headline.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+  function applyCard(card, i, p) {
+    var spec = beats[i] || beats[beats.length - 1];
+    var t = easeOut(range(p, spec.a, spec.b));
+    card.style.opacity = String(mix(spec.op, 1, t));
+    card.style.transform =
+      'translate3d(' + mix(spec.x, 0, t) + '%,' + mix(spec.y, 0, t) + 'vh,0) rotateX(' +
+      mix(spec.rx, 0, t) + 'deg) rotateY(' + mix(spec.ry, 0, t) + 'deg) rotate(' +
+      mix(spec.rot, 0, t) + 'deg) scale(' + mix(spec.sc, 1, t) + ')';
   }
 
-  function applyBeats(p) {
-    setIn(p1, p >= 0.22);
+  function apply(p) {
     var i;
-    for (i = 0; i < tags.length; i++) {
-      setIn(tags[i], p >= 0.42 + i * 0.1);
-    }
+    for (i = 0; i < cards.length; i++) applyCard(cards[i], i, p);
   }
 
   function clearInline() {
-    headline.style.opacity = '';
-    headline.style.transform = '';
-    setIn(p1, false);
     var i;
-    for (i = 0; i < tags.length; i++) setIn(tags[i], false);
+    for (i = 0; i < cards.length; i++) {
+      cards[i].style.opacity = '';
+      cards[i].style.transform = '';
+    }
   }
 
   function update() {
     ticking = false;
     if (section.classList.contains('opening-static')) return;
-    var s = state();
-    applyHeadline(s);
-    applyBeats(s.p);
+    apply(progress());
   }
 
   function requestUpdate() {

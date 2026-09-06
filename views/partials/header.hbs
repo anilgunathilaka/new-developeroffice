@@ -1,17 +1,23 @@
 <header class="header" id="header">
-  <a href="/" class="brand">{{> logo}}</a>
-  <nav class="nav" aria-label="Primary">
-    <ul class="nav-links">
-      <li><a href="/work" {{#if (eq meta.nav 'work')}}aria-current="page"{{/if}}>Work</a></li>
-      <li><a href="/capabilities" {{#if (eq meta.nav 'capabilities')}}aria-current="page"{{/if}}>Capabilities</a></li>
-      <li><a href="/studio" {{#if (eq meta.nav 'studio')}}aria-current="page"{{/if}}>Studio</a></li>
-      <li><a href="/insights" {{#if (eq meta.nav 'insights')}}aria-current="page"{{/if}}>Insights</a></li>
-    </ul>
-  </nav>
-  <div class="nav-end">
-    {{> button href="/contact/start-a-project" label="Start a Project" variant="btn-header" arrow=true}}
-    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-      <span class="menu-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-    </button>
+  <div class="header-bar">
+    <a href="/" class="brand">{{> logo}}</a>
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="/work" {{#if (eq meta.nav 'work')}}aria-current="page"{{/if}}>Work</a></li>
+        <li><a href="/capabilities" {{#if (eq meta.nav 'capabilities')}}aria-current="page"{{/if}}>Capabilities</a></li>
+        <li><a href="/studio" {{#if (eq meta.nav 'studio')}}aria-current="page"{{/if}}>Studio</a></li>
+        <li><a href="/insights" {{#if (eq meta.nav 'insights')}}aria-current="page"{{/if}}>Insights</a></li>
+      </ul>
+    </nav>
+    <div class="nav-end">
+      <a href="/contact/start-a-project" class="btn-header">Talk to us
+        <span class="btn-header-arw" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <span class="menu-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
   </div>
 </header>

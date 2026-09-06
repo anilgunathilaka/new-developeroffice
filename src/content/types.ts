@@ -18,6 +18,7 @@ export interface ProjectCard {
   tag: string;        // category label, e.g. "Language"
   descriptor: string; // one-line card copy
   viz: 'ocr' | 'legal' | 'finance' | 'agents' | 'compliance' | 'product' | 'research';
+  image?: string;     // real project image in /public/images
 }
 
 /** 13-section case-study shape (strategy.md §9). Missing sections use placeholder tokens. */

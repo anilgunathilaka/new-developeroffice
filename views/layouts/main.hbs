@@ -11,33 +11,102 @@
 <body{{#if (eq meta.pageCss 'home')}} class="has-dark-hero"{{/if}}>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="header" id="header">
-    <a href="/" class="brand">{{> logo}}</a>
-    <nav class="nav" aria-label="Primary">
-      <ul class="nav-links">
-        <li><a href="/work" {{#if (eq meta.nav 'work')}}aria-current="page"{{/if}}>Work</a></li>
-        <li><a href="/capabilities" {{#if (eq meta.nav 'capabilities')}}aria-current="page"{{/if}}>Capabilities</a></li>
-        <li><a href="/studio" {{#if (eq meta.nav 'studio')}}aria-current="page"{{/if}}>Studio</a></li>
-        <li><a href="/insights" {{#if (eq meta.nav 'insights')}}aria-current="page"{{/if}}>Insights</a></li>
-      </ul>
-    </nav>
-    <div class="nav-end">
-      {{> button href="/contact/start-a-project" label="Start a Project" variant="btn-header" arrow=true}}
-      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-        <span class="menu-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-      </button>
+    <div class="header-bar">
+      <a href="/" class="brand">{{> logo}}</a>
+      <nav class="nav" aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="/work" {{#if (eq meta.nav 'work')}}aria-current="page"{{/if}}>Work</a></li>
+          <li><a href="/capabilities" {{#if (eq meta.nav 'capabilities')}}aria-current="page"{{/if}}>Capabilities</a></li>
+          <li><a href="/studio" {{#if (eq meta.nav 'studio')}}aria-current="page"{{/if}}>Studio</a></li>
+          <li><a href="/insights" {{#if (eq meta.nav 'insights')}}aria-current="page"{{/if}}>Insights</a></li>
+        </ul>
+      </nav>
+      <div class="nav-end">
+        <a href="/contact/start-a-project" class="btn-header">Talk to us
+          <span class="btn-header-arw" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span class="menu-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+      </div>
     </div>
   </header>
   {{> mobile-menu}}
   <main id="main">
     {{{body}}}
   </main>
-  {{> footer}}
+  <footer class="footer">
+    <div class="foot-inner">
+      <div class="foot-top">
+        <h2>DO NOW</h2>
+        <p>Let's figure out what to build. From Colombo, for thirty years.</p>
+        <a href="/contact/start-a-project" class="foot-cta">Start a Project
+          <span aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </div>
+      <div class="foot-grid">
+        <div class="foot-col">
+          <h3>Navigate</h3>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/work">Work</a></li>
+            <li><a href="/capabilities">Capabilities</a></li>
+            <li><a href="/studio">Studio</a></li>
+            <li><a href="/insights">Insights</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h3>Work</h3>
+          <ul>
+            <li><a href="/work/sinhala-tamil-ocr">Sinhala &amp; Tamil OCR</a></li>
+            <li><a href="/work/asklex-law">AskLex.law</a></li>
+            <li><a href="/work/financial-platform-engineering">Financial Platforms</a></li>
+            <li><a href="/work/ai-agent-systems">AI Agent Systems</a></li>
+            <li><a href="/work/data-protection">Data Protection</a></li>
+            <li><a href="/work/product-engineering">Product Engineering</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h3>Studio</h3>
+          <ul>
+            <li><a href="/studio">About</a></li>
+            <li><a href="/studio/approach">Approach</a></li>
+            <li><a href="/studio/team">Team</a></li>
+            <li><a href="/studio/careers">Careers</a></li>
+            <li><a href="/insights">Insights</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h3>Contact</h3>
+          <ul>
+            <li><a href="mailto:hello@developeroffice.com">hello@developeroffice.com</a></li>
+            <li><a href="tel:+94777552555">+94 77 755 2555</a></li>
+            <li><a href="https://maps.google.com/?q=Nugegoda,Colombo">Nugegoda, Colombo</a></li>
+            <li><a href="/contact/start-a-project">Start a Project</a></li>
+            <li><a href="/contact/general-enquiries">General enquiries</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <a href="/" class="fb-logo">{{> logo invert=true}}</a>
+        <p>&copy;{{year}} Developer Office. All rights reserved.</p>
+        <span class="links"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+      </div>
+    </div>
+  </footer>
   {{> action-bar}}
   <script defer src="{{asset '/js/header.js'}}"></script>
   <script defer src="{{asset '/js/reveal.js'}}"></script>
   <script defer src="{{asset '/js/count.js'}}"></script>
   <script defer src="{{asset '/js/method.js'}}"></script>
+  {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/hero-bg.js'}}"></script>{{/if}}
   {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/opening.js'}}"></script>{{/if}}
   {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/work-facts.js'}}"></script>{{/if}}
+  {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/proof.js'}}"></script>{{/if}}
 </body>
 </html>
