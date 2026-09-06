@@ -1,4 +1,4 @@
-/* hero-bg.js — plays /videos/developeroffice.mp4 as the hero background.
+/* hero-bg.js — plays /videos/hero-video.mp4 as the hero background.
    Falls back to a local canvas loop if the file can't play. */
 (function () {
   var video = document.getElementById('heroVideo');

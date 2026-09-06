@@ -10,16 +10,20 @@
 </head>
 <body{{#if (eq meta.pageCss 'home')}} class="has-dark-hero"{{/if}}>
   <a class="skip-link" href="#main">Skip to content</a>
+  <span id="headerTopMark" class="header-top-mark" aria-hidden="true"></span>
   <header class="header" id="header">
     <div class="header-bar">
       <a href="/" class="brand">{{> logo}}</a>
       <nav class="nav" aria-label="Primary">
-        <ul class="nav-links">
-          <li><a href="/work" {{#if (eq meta.nav 'work')}}aria-current="page"{{/if}}>Work</a></li>
-          <li><a href="/capabilities" {{#if (eq meta.nav 'capabilities')}}aria-current="page"{{/if}}>Capabilities</a></li>
-          <li><a href="/studio" {{#if (eq meta.nav 'studio')}}aria-current="page"{{/if}}>Studio</a></li>
-          <li><a href="/insights" {{#if (eq meta.nav 'insights')}}aria-current="page"{{/if}}>Insights</a></li>
-        </ul>
+        <div class="nav-links" id="navLinks">
+          <span class="nav-pill" id="navPill" aria-hidden="true"></span>
+          <ul>
+            <li><a href="/work" {{#if (eq meta.nav 'work')}}aria-current="page"{{/if}}>Work</a></li>
+            <li><a href="/capabilities" {{#if (eq meta.nav 'capabilities')}}aria-current="page"{{/if}}>Capabilities</a></li>
+            <li><a href="/studio" {{#if (eq meta.nav 'studio')}}aria-current="page"{{/if}}>Studio</a></li>
+            <li><a href="/insights" {{#if (eq meta.nav 'insights')}}aria-current="page"{{/if}}>Insights</a></li>
+          </ul>
+        </div>
       </nav>
       <div class="nav-end">
         <a href="/contact/start-a-project" class="btn-header">Talk to us
@@ -33,6 +37,14 @@
       </div>
     </div>
   </header>
+  <script>
+    (function () {
+      var h = document.getElementById('header');
+      if (h && window.scrollY > 1) {
+        h.classList.add('is-sticky', 'is-compact');
+      }
+    })();
+  </script>
   {{> mobile-menu}}
   <main id="main">
     {{{body}}}

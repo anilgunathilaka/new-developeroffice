@@ -41,49 +41,99 @@ section{padding-block:clamp(64px,10vw,var(--space-10))}
 .btn-ghost{background:transparent;color:var(--near-black)}
 .btn-ghost:hover{background:var(--near-black);color:var(--off-white);border-color:var(--near-black)}
 
-/* ---------- header — floating white pill (Developios chrome; DO logo/links) ---------- */
+/* ---------- header — Jitter minimize: slide-up nav, fade island, scale-in burger ---------- */
 .header{
   position:fixed;top:0;left:0;right:0;z-index:120;
   display:flex;justify-content:center;
   padding:20px 5vw 0;
   background:transparent;border:0;box-shadow:none;height:auto;
+  pointer-events:none;
+  --nav-spring:cubic-bezier(.22,1.15,.36,1);
+  --nav-overshoot:cubic-bezier(.33,1.42,.05,.96);
+  --nav-fade:cubic-bezier(.25,.46,.45,.94);
 }
-.header-bar,
-.header:not(:has(.header-bar)){
+.header:not(.is-ready) .header-bar,
+.header:not(.is-ready) .brand,
+.header:not(.is-ready) .nav,
+.header:not(.is-ready) .btn-header,
+.header:not(.is-ready) .menu-toggle{
+  transition:none;
+}
+.header:not(.is-compact) .header-bar,
+.header-bar{
+  pointer-events:auto;
   width:min(1200px,90vw);height:70px;
   display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
   padding:0 10px 0 28px;
   background:#fff;color:#191919;
-  border-radius:999px;
+  border-radius:20px;
   box-shadow:0 8px 28px rgba(0,0,0,.12);
+  overflow:visible;
+  transition:
+    background-color .3s var(--nav-fade),
+    box-shadow .3s var(--nav-fade);
 }
-.header:not(:has(.header-bar)){
-  top:20px;left:50%;right:auto;padding:0;
-  transform:translateX(-50%);
+.header-top-mark{
+  position:absolute;top:0;left:0;width:1px;height:1px;
+  pointer-events:none;visibility:hidden;
 }
-.header.solid .header-bar,
-.header.solid:not(:has(.header-bar)){box-shadow:0 10px 32px rgba(0,0,0,.14)}
+.header:not(.is-compact) .brand,
+.header:not(.is-compact) .nav{
+  transform:none;
+  opacity:1;
+  pointer-events:auto;
+}
+.header:not(.is-compact) .btn-header{transform:none;font-weight:500}
+.header:not(.is-compact) .btn-header-arw{opacity:1;width:20px;overflow:visible}
+.header:not(.is-compact) .menu-toggle{
+  transform:translateY(-50%) scale(0);
+  pointer-events:none;
+}
+.header.is-compact .header-bar{
+  background:transparent;
+  box-shadow:none;
+  pointer-events:none;
+  overflow:visible;
+}
+.header.is-compact .nav-end{pointer-events:auto}
+.brand,.nav{
+  transition:transform .8s var(--nav-overshoot),opacity .3s var(--nav-fade);
+}
+.header.is-compact .brand,
+.header.is-compact .nav{
+  transform:translateY(-8rem);
+  opacity:0;
+  pointer-events:none;
+}
 .brand{display:flex;align-items:center;line-height:0;justify-self:start}
-.brand-logo{display:block;height:34px;width:auto}
+.brand-logo{display:block;height:24px;width:auto;max-width:min(168px,38vw)}
 .brand-logo--on-dark{filter:brightness(0) invert(1)}
 .nav{justify-self:center}
-.nav-links{display:flex;align-items:center;gap:2px}
-.nav-links a{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:15px;font-weight:500;line-height:1;letter-spacing:0;
-  padding:8px 16px;border-radius:8px;color:#191919;white-space:nowrap;
-  transition:background-color .15s ease;
+.nav-links{position:relative;display:flex;align-items:center}
+.nav-links ul{display:flex;align-items:center;gap:2px;position:relative;z-index:1}
+.nav-pill{
+  position:absolute;top:50%;left:0;height:40px;width:0;
+  border-radius:12px;background:rgba(0,0,0,.06);
+  transform:translate(0,-50%);
+  pointer-events:none;opacity:0;
+  transition:transform 480ms var(--nav-spring),width 480ms var(--nav-spring),opacity 180ms ease;
 }
-.nav-links a:hover,.nav-links a[aria-current="page"]{background:rgba(0,0,0,.04)}
+.nav-links.is-hot .nav-pill{opacity:1}
+.nav-links a{
+  position:relative;z-index:1;
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:15px;font-weight:700;line-height:1;letter-spacing:0;
+  padding:10px 16px;border-radius:12px;color:#191919;white-space:nowrap;
+}
 .nav-chev{display:none}
-.nav-end{display:flex;align-items:center;justify-self:end;gap:8px}
+.nav-end{display:flex;align-items:center;justify-self:end;gap:8px;position:relative}
 .btn-header{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   height:46px;padding:0 28px;border:0;border-radius:999px;
   background:#191919;color:#fff;
   font-family:var(--body);font-size:14px;font-weight:500;line-height:1;
   text-decoration:none;white-space:nowrap;
-  transition:opacity .2s ease;
+  transition:opacity .2s ease,transform .8s var(--nav-overshoot);
 }
 .btn-header:hover{opacity:.88;background:#191919;color:#fff}
 .btn-header-arw{
@@ -93,15 +143,26 @@ section{padding-block:clamp(64px,10vw,var(--space-10))}
 }
 .btn-header:hover .btn-header-arw{transform:translate(2px,-2px)}
 .menu-toggle{
-  display:none;width:44px;height:44px;padding:0;position:relative;
-  color:#191919;background:transparent;border:0;
+  display:flex;width:46px;height:46px;padding:0;
+  position:absolute;top:50%;right:0;
+  color:#fff;background:#191919;border:0;border-radius:50%;
+  transform:translateY(-50%) scale(0);
+  transform-origin:center;
+  pointer-events:none;
+  transition:transform .8s var(--nav-overshoot),background-color .16s linear;
 }
-.menu-toggle-bars{display:flex;flex-direction:column;justify-content:center;gap:5px;width:20px;height:14px;margin:auto}
+.menu-toggle-bars{display:flex;flex-direction:column;justify-content:center;gap:5px;width:18px;height:14px;margin:auto}
 .menu-toggle-bars span{display:block;width:100%;height:2px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),opacity .3s var(--ease)}
-.menu-toggle-bars span:nth-child(3){width:60%}
 .header.menu-open .menu-toggle-bars span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .header.menu-open .menu-toggle-bars span:nth-child(2){opacity:0}
-.header.menu-open .menu-toggle-bars span:nth-child(3){width:100%;transform:translateY(-7px) rotate(-45deg)}
+.header.menu-open .menu-toggle-bars span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.header.is-compact .btn-header{transform:translateX(-56px);font-weight:700}
+.header.is-compact .btn-header-arw{opacity:0;width:0;margin:0;overflow:hidden}
+.header.is-compact .menu-toggle{
+  transform:translateY(-50%) scale(1);
+  pointer-events:auto;
+}
+/* mobile overlay keeps the compact chrome + X; desktop expand drops .is-compact */
 
 /* ---------- mobile menu ---------- */
 .mobile-menu{
@@ -189,7 +250,7 @@ section{padding-block:clamp(64px,10vw,var(--space-10))}
   font-size:14px;color:#9b9b95;
 }
 .foot-bottom .fb-logo{display:inline-block;line-height:0}
-.foot-bottom .brand-logo{height:28px;width:auto}
+.foot-bottom .brand-logo{height:20px;width:auto}
 .foot-bottom a{color:#9b9b95}
 .foot-bottom a:hover{color:#fff}
 .foot-bottom .links{display:flex;gap:24px}
@@ -200,7 +261,7 @@ section{padding-block:clamp(64px,10vw,var(--space-10))}
 .action-bar .btn{width:100%;justify-content:center}
 
 /* ---------- generic page header (interior pages) ---------- */
-.page-hero{padding-top:140px}
+.page-hero{padding-top:110px}
 .page-hero .eyebrow{margin-bottom:var(--space-5)}
 .page-hero h1{font-size:clamp(38px,6vw,84px);letter-spacing:-.03em;max-width:16ch}
 .page-hero .sub{margin-top:var(--space-5);color:var(--mid-grey);font-size:clamp(18px,2vw,22px);max-width:52ch}
@@ -213,18 +274,25 @@ section{padding-block:clamp(64px,10vw,var(--space-10))}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:1024px){
-  .nav,.nav-end .btn-header{display:none}
-  .menu-toggle{display:flex}
-  .header-bar,
-  .header:not(:has(.header-bar)){grid-template-columns:1fr auto;height:60px;padding:0 8px 0 20px}
+  .nav{display:none}
+  .header:not(.is-compact) .nav-end .btn-header{display:none}
+  .header:not(.is-compact) .menu-toggle{
+    position:relative;top:auto;right:auto;
+    transform:none;pointer-events:auto;
+    color:#191919;background:transparent;
+  }
+  .header:not(.is-compact) .header-bar{grid-template-columns:1fr auto;height:60px;padding:0 8px 0 20px}
+  .header.is-compact .nav-end .btn-header{display:inline-flex}
 }
 @media (max-width:760px){
   body{font-size:17px}
-  .header{padding:12px 12px 0}
-  .header-bar,
-  .header:not(:has(.header-bar)){height:56px;padding:0 8px 0 16px}
+  .header:not(.is-compact){padding:12px 12px 0}
+  .header:not(.is-compact) .header-bar{height:56px;padding:0 8px 0 16px}
   .action-bar{display:block}
   .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .nav-pill,.header-bar,.brand,.nav,.btn-header,.menu-toggle{transition:none}
 }
 @media (max-width:440px){
   .foot-grid{grid-template-columns:1fr}

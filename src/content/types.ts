@@ -9,6 +9,7 @@ export interface Stat {
   unit?: string;      // e.g. "yrs", "%"  (rendered in accent)
   label: string;      // descriptor beneath the numeral
   countTo?: number;   // if set, the numeral counts up to this on scroll
+  image?: string;     // optional card background in /public/images
   verified: boolean;
 }
 
