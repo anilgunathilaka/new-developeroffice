@@ -1,5 +1,6 @@
 import { randomBytes, timingSafeEqual } from 'crypto';
 import { NextFunction, Request, Response } from 'express';
+import { allProjectCards } from '../content/work';
 
 /**
  * Zero-dependency double-submit CSRF guard (CLAUDE.md §11): the server sets an
@@ -52,5 +53,9 @@ export function csrfLocalsMiddleware(req: Request, res: Response, next: NextFunc
   res.locals.currentPath = req.path || '/';
   res.locals.contactSent = req.query.contact === 'sent';
   res.locals.contactError = req.query.contact === 'error';
+  const navWork = allProjectCards();
+  res.locals.navWork = navWork;
+  res.locals.navWorkFeatured = navWork.slice(0, 4);
+  res.locals.navWorkMore = navWork.slice(4);
   next();
 }

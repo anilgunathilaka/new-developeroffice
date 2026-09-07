@@ -12,13 +12,54 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <span id="headerTopMark" class="header-top-mark" aria-hidden="true"></span>
   <header class="header" id="header">
-    <div class="header-bar">
+    <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+    <div class="nav-sheet" id="navSheet" aria-hidden="true">
+      <div class="work-menu" id="workMenu" role="region" aria-label="Work" aria-hidden="true">
+        <div class="work-menu-inner" id="workMenuInner">
+          {{#each navWorkFeatured}}
+          <a class="work-menu-card" href="/work/{{slug}}" style="--i:{{@index}}">
+            <span class="work-menu-card-face">
+              <span class="work-menu-card-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              {{#if image}}
+              <span class="work-menu-card-media">
+                <img src="{{asset image}}" alt="" width="560" height="560" loading="lazy">
+              </span>
+              {{/if}}
+              <span class="work-menu-card-copy">
+                <span class="work-menu-title">{{name}}</span>
+                <span class="work-menu-kicker">{{tag}}</span>
+                <span class="work-menu-go">View case</span>
+              </span>
+            </span>
+          </a>
+          {{/each}}
+          <nav class="work-menu-side" aria-labelledby="workMenuSideTitle">
+            <p class="work-menu-side-title work-menu-text" id="workMenuSideTitle" style="--i:0">Selected work</p>
+            <ul>
+              {{#each navWorkMore}}
+              <li class="work-menu-text" style="--i:{{@index}}"><a href="/work/{{slug}}">{{name}}</a></li>
+              {{/each}}
+            </ul>
+            <a class="work-menu-all work-menu-text" href="/work" style="--i:3">View all work
+              <span class="work-menu-all-arw" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="header-bar" id="headerBar">
       <a href="/" class="brand">{{> logo}}</a>
       <nav class="nav" aria-label="Primary">
         <div class="nav-links" id="navLinks">
           <span class="nav-pill" id="navPill" aria-hidden="true"></span>
           <ul>
-            <li><a href="/work" {{#if (eq meta.nav 'work')}}aria-current="page"{{/if}}>Work</a></li>
+            <li class="nav-item nav-item--work" id="navWorkItem">
+              <a href="/work" id="navWorkLink" aria-haspopup="true" aria-expanded="false" aria-controls="workMenu" {{#if (eq meta.nav 'work')}}aria-current="page"{{/if}}>Work</a>
+            </li>
             <li><a href="/capabilities" {{#if (eq meta.nav 'capabilities')}}aria-current="page"{{/if}}>Capabilities</a></li>
             <li><a href="/studio" {{#if (eq meta.nav 'studio')}}aria-current="page"{{/if}}>Studio</a></li>
             <li><a href="/insights" {{#if (eq meta.nav 'insights')}}aria-current="page"{{/if}}>Insights</a></li>
@@ -119,6 +160,7 @@
   <script defer src="{{asset '/js/method.js'}}"></script>
   <script defer src="{{asset '/js/contact-parallax.js'}}"></script>
   {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/hero-bg.js'}}"></script>{{/if}}
+  {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/hero-shape.js'}}"></script>{{/if}}
   {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/opening.js'}}"></script>{{/if}}
   {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/work-facts.js'}}"></script>{{/if}}
   {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/proof.js'}}"></script>{{/if}}

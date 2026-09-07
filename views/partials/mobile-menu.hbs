@@ -1,6 +1,13 @@
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <ul class="mobile-links">
-    <li><a href="/work">Work</a></li>
+    <li>
+      <a href="/work">Work</a>
+      <ul class="mobile-sub">
+        {{#each navWork}}
+        <li><a href="/work/{{slug}}">{{name}}</a></li>
+        {{/each}}
+      </ul>
+    </li>
     <li><a href="/capabilities">Capabilities</a></li>
     <li><a href="/studio">Studio</a></li>
     <li><a href="/insights">Insights</a></li>
