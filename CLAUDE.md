@@ -35,7 +35,7 @@ A reference static homepage (`reference/index.html`) already exists — a single
 - **@nestjs/platform-express** (Express under the hood — required for MVC/views).
 - **hbs** as the view engine (Handlebars).
 - **Custom CSS only**, served from `/public`. Vanilla JS only, served from `/public`.
-- **Fonts:** self-hosted (see §5) — Space Grotesk (display), Inter (body), Space Mono (labels/meta). No other typefaces.
+- **Fonts:** self-hosted (see §5) — Switzer (display, body, labels). No other typefaces.
 - **Validation** (form): `class-validator` + `class-transformer` (Nest standard).
 - **Config:** `@nestjs/config` for env vars.
 - **Content:** typed TS modules in `src/content` (plain objects). No CMS unless asked (§10).
@@ -148,7 +148,7 @@ bootstrap();
 
 There is no `next/font` here — self-host to avoid layout shift and a render-blocking third-party request:
 
-- Download **Space Grotesk** (400/500/600/700), **Inter** (400/500/600), **Space Mono** (400/700) as `woff2` into `public/fonts`.
+- Download **Switzer** (400/500/600/700/900) as `woff2` into `public/fonts`.
 - Declare `@font-face` in `tokens.css` with `font-display: swap`.
 - `<link rel="preload" as="font" type="font/woff2" crossorigin>` the two–three critical weights (display 700 for the hero, body 400) in `seo-head.hbs`.
 - Reference via the family CSS variables in tokens (below). Do not `@import` from Google Fonts.
@@ -205,9 +205,9 @@ From `strategy.md` §29 and §31 — non-negotiable:
   --page-x:clamp(20px,6vw,120px);
   --measure:64ch;
 
-  --display:"Space Grotesk", system-ui, sans-serif;
-  --body:"Inter", system-ui, sans-serif;
-  --mono:"Space Mono", ui-monospace, monospace;
+  --display:"Switzer", sans-serif;
+  --body:"Switzer", sans-serif;
+  --mono:"Switzer", sans-serif;
 }
 ```
 

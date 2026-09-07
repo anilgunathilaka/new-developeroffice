@@ -582,7 +582,7 @@ main#main{
 }
 .foot-top{text-align:center;margin:0 auto 80px}
 .foot-top h2{
-  font-family:"Inter",var(--display),sans-serif;
+  font-family:var(--display),sans-serif;
   font-size:clamp(72px,14vw,180px);font-weight:900;letter-spacing:.02em;line-height:.88;
   white-space:nowrap;color:#fff;
   -webkit-text-stroke:.06em #fff;

@@ -5,15 +5,12 @@
    Hand-written CSS — no framework.
    ============================================================ */
 
-/* ---------- @font-face (self-hosted; CLAUDE.md §5) ----------
-   Drop the woff2 files into /public/fonts. Until then, the
-   system-ui fallbacks in the family vars keep the site usable. */
-@font-face{font-family:"DM Sans";src:url("/fonts/DMSans-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"DM Sans";src:url("/fonts/DMSans-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
-@font-face{font-family:"DM Sans";src:url("/fonts/DMSans-SemiBold.woff2") format("woff2");font-weight:600;font-display:swap}
-@font-face{font-family:"DM Sans";src:url("/fonts/DMSans-Bold.woff2") format("woff2");font-weight:700;font-display:swap}
-@font-face{font-family:"DM Sans";src:url("/fonts/DMSans-Black.woff2") format("woff2");font-weight:900;font-display:swap}
-@font-face{font-family:"Inter";src:url("/fonts/Inter-Black.woff2") format("woff2");font-weight:900;font-display:swap}
+/* ---------- @font-face (self-hosted; CLAUDE.md §5) ---------- */
+@font-face{font-family:"Switzer";src:url("/fonts/Switzer-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Switzer";src:url("/fonts/Switzer-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Switzer";src:url("/fonts/Switzer-Semibold.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Switzer";src:url("/fonts/Switzer-Bold.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Switzer";src:url("/fonts/Switzer-Black.woff2") format("woff2");font-weight:900;font-display:swap}
 
 :root{
   /* palette — from Developer Office business cards */
@@ -41,9 +38,9 @@
   --measure:64ch;
 
   /* type families */
-  --display:"DM Sans", system-ui, sans-serif;
-  --body:"DM Sans", system-ui, sans-serif;
-  --mono:"DM Sans", system-ui, sans-serif;
+  --display:"Switzer", sans-serif;
+  --body:"Switzer", sans-serif;
+  --mono:"Switzer", sans-serif;
 }
 
 /* ---------- reset ---------- */
