@@ -40,6 +40,7 @@
     <h2 class="opening-h">Complex problems deserve<br>serious engineering.</h2>
     <p class="opening-p1">Most software problems have a known shape and an off-the-shelf answer. The ones we take on don't. They sit at the intersection of <strong>software engineering, artificial intelligence, applied research and product development</strong> — where the right approach has to be found before it can be built, and where "mostly working" isn't a finish line.</p>
   </div>
+  <p class="opening-watermark" aria-hidden="true">DEVELOPER OFFICE</p>
   <ul class="opening-line">
     <li>
       <div class="opening-viz">
@@ -187,7 +188,6 @@
     <div class="reality-head rv">
       <h2>Built for the systems people actually use.</h2>
     </div>
-    <p class="reality-lede rv">Courts. Banks. Government registries. Newsrooms. Archives. The places our software runs don't tolerate approximations, and they don't get to restart. So we design every component to survive contact with real users, real data and real deadlines — and to keep working long after launch.</p>
     <ul class="institutions">
       <li class="rv">
         <div class="inst-top">
@@ -234,46 +234,108 @@
 </section>
 
 {{! SECTION 06 — AI }}
-<section class="ai">
+<section class="ai" id="ai">
   <div class="jt-wrap">
-    <p class="jt-kicker rv">Applied AI</p>
     <h2 class="rv">Intelligence, engineered.</h2>
-    <p class="ai-lede rv">We don't treat AI as a marketing layer. We treat it as engineering: retrieval you can audit, agents with permissioned access, models trained for the scripts and domains the big labs overlook, and a human in the loop wherever a human belongs.</p>
-    <div class="ai-strands">
-      <div class="strand rv"><span class="tag">Language AI</span><p>Sinhala &amp; Tamil OCR at 97%, built on models trained for scripts the large labs ignore.</p></div>
-      <div class="strand rv"><span class="tag">Legal intelligence</span><p>AskLex.law: retrieval-grade AI for Sri Lankan law, with checkable citations.</p></div>
-      <div class="strand rv"><span class="tag">Financial platforms</span><p>Deterministic, auditable engineering for high-volume financial workflows.</p></div>
-      <div class="strand rv"><span class="tag">AI agents</span><p>Systems that research, draft and monitor, with permissioned access and configurable workflows.</p></div>
+  </div>
+  <div class="ai-slider">
+    <div class="ai-viewport" id="aiSlider" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Applied AI">
+      <div class="strand">
+        <div class="strand-viz">
+          <img src="{{asset '/images/Intelligence-1.webp'}}" alt="" width="1600" height="1000" loading="lazy" draggable="false">
+        </div>
+        <div class="strand-copy">
+          <span class="tag">Language AI</span>
+          <p>Sinhala &amp; Tamil OCR at 97%, built on models trained for scripts the large labs ignore.</p>
+        </div>
+      </div>
+      <div class="strand">
+        <div class="strand-viz">
+          <img src="{{asset '/images/Intelligence-2.webp'}}" alt="" width="1600" height="1000" loading="lazy" draggable="false">
+        </div>
+        <div class="strand-copy">
+          <span class="tag">Legal intelligence</span>
+          <p>AskLex.law: retrieval-grade AI for Sri Lankan law, with checkable citations.</p>
+        </div>
+      </div>
+      <div class="strand">
+        <div class="strand-viz">
+          <img src="{{asset '/images/Intelligence-3.webp'}}" alt="" width="1600" height="1000" loading="lazy" draggable="false">
+        </div>
+        <div class="strand-copy">
+          <span class="tag">Financial platforms</span>
+          <p>Deterministic, auditable engineering for high-volume financial workflows.</p>
+        </div>
+      </div>
+      <div class="strand">
+        <div class="strand-viz">
+          <img src="{{asset '/images/Intelligence-4.webp'}}" alt="" width="1600" height="1000" loading="lazy" draggable="false">
+        </div>
+        <div class="strand-copy">
+          <span class="tag">AI agents</span>
+          <p>Systems that research, draft and monitor, with permissioned access and configurable workflows.</p>
+        </div>
+      </div>
     </div>
-    <div class="ai-link rv"><a href="/capabilities/ai-engineering" class="jt-link">How we think about AI <span class="arw">&rarr;</span></a></div>
+    <div class="ai-bar">
+      <a href="/capabilities/ai-engineering" class="work-all-btn">How we think about AI
+        <span class="work-all-arw" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+      <div class="ai-nav" id="aiNav">
+        <button class="ai-nav-btn" id="aiPrev" type="button" aria-label="Go to previous slide">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 4.5L7 10l5.5 5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="ai-nav-btn" id="aiNext" type="button" aria-label="Go to next slide">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="ai-dots" id="aiDots" hidden></div>
   </div>
 </section>
 
 {{! SECTION 07 — METHOD }}
-<section class="method">
-  <div class="jt-wrap">
-    <p class="jt-kicker rv">How we work</p>
-    <h2 class="rv">Five stages, from first question to running system.</h2>
-    <div class="steps" id="steps">
-      <div class="step rv"><div class="n">01</div><h3>Understand</h3><p>The organisation, its users, its constraints, and the actual problem.</p></div>
-      <div class="step rv"><div class="n">02</div><h3>Model</h3><p>Research the problem and define the technical approach before committing to a build.</p></div>
-      <div class="step rv"><div class="n">03</div><h3>Build</h3><p>Design and engineer the system.</p></div>
-      <div class="step rv"><div class="n">04</div><h3>Validate</h3><p>Test against real-world requirements, not demo conditions.</p></div>
-      <div class="step rv"><div class="n">05</div><h3>Operate</h3><p>Deploy, measure, improve and maintain.</p></div>
+<section class="method" id="method">
+  <div class="method-pin">
+    <div class="jt-wrap">
+      <h2>Five stages, from first question to running system.</h2>
     </div>
-    <div class="ai-link rv"><a href="/studio/approach" class="jt-link">Our approach in detail <span class="arw">&rarr;</span></a></div>
+    <p class="method-watermark" aria-hidden="true">DEVELOPER OFFICE</p>
+    <div class="steps" id="steps">
+      <a href="/studio/approach#understand" class="step"><span class="step-view" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="n">01</span><h3>Understand</h3><p>The organisation, users, constraints, and problem.</p></a>
+      <a href="/capabilities/applied-research" class="step"><span class="step-view" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="n">02</span><h3>Model</h3><p>Research first, define the approach, then build.</p></a>
+      <a href="/capabilities/product-engineering" class="step"><span class="step-view" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="n">03</span><h3>Build</h3><p>Design and engineer the system.</p></a>
+      <a href="/studio/approach#validate" class="step"><span class="step-view" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="n">04</span><h3>Validate</h3><p>Test against real-world needs, not demos.</p></a>
+      <a href="/capabilities/enterprise-systems" class="step"><span class="step-view" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="n">05</span><h3>Operate</h3><p>Deploy, measure, improve and maintain.</p></a>
+    </div>
+    <div class="jt-wrap">
+      <div class="work-all method-cta">
+        <a href="/studio/approach" class="work-all-btn">Our approach in detail
+          <span class="work-all-arw" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
 {{! SECTION 08 — INSIGHTS }}
 <section class="insights-teaser">
   <div class="jt-wrap">
-    <p class="jt-kicker rv">Thinking</p>
     <h2 class="rv">We publish what we learn.</h2>
     <div class="art-grid">
       {{#each insights}}{{> article-card this}}{{/each}}
     </div>
-    <div class="insights-link rv"><a href="/insights" class="jt-link">Read the Insights <span class="arw">&rarr;</span></a></div>
+    <div class="work-all">
+      <a href="/insights" class="work-all-btn">Read the Insights
+        <span class="work-all-arw" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+    </div>
   </div>
 </section>
 

@@ -1,0 +1,40 @@
+<div class="site-contact-pin">
+<section class="site-contact" id="site-contact" aria-labelledby="siteContactTitle">
+  <div class="site-contact-inner">
+    <div class="site-contact-copy">
+      <h2 id="siteContactTitle">Let's build what matters.</h2>
+      {{#if contactSent}}
+      <p class="site-contact-success" role="status">Thank you. An engineer at Developer Office will read this and reply personally.</p>
+      {{else}}
+      <form class="site-contact-form" method="POST" action="/contact/general-enquiries" novalidate>
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <input type="hidden" name="returnTo" value="{{currentPath}}">
+        <div class="honeypot" aria-hidden="true">
+          <label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        {{#if contactError}}<p class="site-contact-error" role="alert">Please check your details and try again.</p>{{/if}}
+        <div class="site-contact-fields">
+          <p>
+            <label class="visually-hidden" for="site-contact-name">Name</label>
+            <input id="site-contact-name" name="name" type="text" required maxlength="120" autocomplete="name" placeholder="Name">
+          </p>
+          <p>
+            <label class="visually-hidden" for="site-contact-email">Email</label>
+            <input id="site-contact-email" name="email" type="email" required maxlength="200" autocomplete="email" placeholder="Email">
+          </p>
+        </div>
+        <p>
+          <label class="visually-hidden" for="site-contact-message">The problem or opportunity</label>
+          <textarea id="site-contact-message" name="message" required maxlength="4000" rows="4" placeholder="What's hard about it? What has to be true for it to work?"></textarea>
+        </p>
+        <button class="site-contact-btn" type="submit">Start the conversation
+          <span aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H7.5M15 5V12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+      </form>
+      {{/if}}
+    </div>
+  </div>
+</section>
+</div>

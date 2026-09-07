@@ -111,14 +111,17 @@
       </div>
     </div>
   </footer>
+  {{> site-contact}}
   {{> action-bar}}
   <script defer src="{{asset '/js/header.js'}}"></script>
   <script defer src="{{asset '/js/reveal.js'}}"></script>
   <script defer src="{{asset '/js/count.js'}}"></script>
   <script defer src="{{asset '/js/method.js'}}"></script>
+  <script defer src="{{asset '/js/contact-parallax.js'}}"></script>
   {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/hero-bg.js'}}"></script>{{/if}}
   {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/opening.js'}}"></script>{{/if}}
   {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/work-facts.js'}}"></script>{{/if}}
   {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/proof.js'}}"></script>{{/if}}
+  {{#if (eq meta.pageCss 'home')}}<script defer src="{{asset '/js/ai-slider.js'}}"></script>{{/if}}
 </body>
 </html>

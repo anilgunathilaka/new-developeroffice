@@ -6,6 +6,7 @@ import { readdirSync, readFileSync } from 'fs';
 import hbs = require('hbs');
 import { AppModule } from './app.module';
 import { registerHbsHelpers } from './common/hbs-helpers';
+import { csrfLocalsMiddleware } from './common/csrf';
 
 /**
  * Register every .hbs file under the partials dir synchronously, using its path
@@ -44,6 +45,8 @@ async function bootstrap() {
   // viz/*.hbs) exists before the first request.
   registerNestedPartials(partialsDir);
   registerHbsHelpers();
+
+  app.use(csrfLocalsMiddleware);
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 

@@ -19,22 +19,19 @@ export function registerHbsHelpers(): void {
     return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
   });
 
-  // Compact "M.D.YY" meta-line date used on article cards (reference/index.html
-  // §08, e.g. "6.12.26"). UTC getters avoid a timezone off-by-one on date-only
-  // ISO strings, which `new Date(...)` parses as UTC midnight.
+  // Article-card date, e.g. "12 APR 2026". UTC getters avoid a timezone
+  // off-by-one on date-only ISO strings parsed as UTC midnight.
   hbs.registerHelper('compactDate', (value?: string) => {
     if (!value) return '[DATE]';
     const d = new Date(value);
     if (Number.isNaN(d.getTime())) return value;
-    const month = d.getUTCMonth() + 1;
-    const day = d.getUTCDate();
-    const year = d.getUTCFullYear() % 100;
-    return `${month}.${day}.${year}`;
+    const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    return `${d.getUTCDate()} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
   });
 
   hbs.registerHelper('year', () => new Date().getFullYear());
 
   // Cache-busting suffix for static assets. Bump ASSET_VERSION on deploy.
-  const version = process.env.ASSET_VERSION || '25';
+  const version = process.env.ASSET_VERSION || '124';
   hbs.registerHelper('asset', (path: string) => new hbs.handlebars.SafeString(`${path}?v=${version}`));
 }

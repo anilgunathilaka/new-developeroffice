@@ -15,4 +15,9 @@ export class EnquiryService {
     this.logger.log(`New enquiry -> ${to}: ${dto.name} (${dto.organisation}) / ${dto.projectType}`);
     // TODO: integrate nodemailer or a transactional email provider here.
   }
+
+  async submitContact(dto: { name: string; email: string; message: string }): Promise<void> {
+    const to = process.env.ENQUIRY_TO || 'hello@developeroffice.com';
+    this.logger.log(`New contact -> ${to}: ${dto.name} / ${dto.email}`);
+  }
 }

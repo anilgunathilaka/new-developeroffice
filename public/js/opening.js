@@ -6,6 +6,7 @@
 
   var pin = section.querySelector('.opening-pin');
   var cards = section.querySelectorAll('.opening-line li');
+  var mark = section.querySelector('.opening-watermark');
   if (!pin || !cards.length) return;
 
   var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -48,6 +49,18 @@
   function apply(p) {
     var i;
     for (i = 0; i < cards.length; i++) applyCard(cards[i], i, p);
+    if (mark) {
+      var fade = easeOut(range(p, 0.23, 0.40));
+      mark.style.opacity = String(mix(0.03, 0, fade));
+    }
+  }
+
+  function fitMark() {
+    if (!mark || section.classList.contains('opening-static')) return;
+    mark.style.fontSize = '100px';
+    var w = mark.scrollWidth;
+    var max = pin.clientWidth;
+    if (w > 0 && max > 0) mark.style.fontSize = (100 * max / w * 1.792) + 'px';
   }
 
   function clearInline() {
@@ -55,6 +68,10 @@
     for (i = 0; i < cards.length; i++) {
       cards[i].style.opacity = '';
       cards[i].style.transform = '';
+    }
+    if (mark) {
+      mark.style.opacity = '';
+      mark.style.fontSize = '';
     }
   }
 
@@ -74,11 +91,17 @@
     var staticMode = isStatic();
     section.classList.toggle('opening-static', staticMode);
     if (staticMode) clearInline();
-    else update();
+    else {
+      fitMark();
+      update();
+    }
   }
 
   section.classList.add('is-ready');
   mode();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { fitMark(); });
+  }
   window.addEventListener('scroll', requestUpdate, { passive: true });
   window.addEventListener('resize', function () { mode(); requestUpdate(); }, { passive: true });
   if (reduceMq.addEventListener) {

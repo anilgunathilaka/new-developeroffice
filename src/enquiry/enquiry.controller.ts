@@ -28,22 +28,24 @@ export class EnquiryController {
     );
   }
 
-  private issueCsrfCookie(res: Response): string {
+  private issueCsrfCookie(req: Request, res: Response): string {
+    const existing = readCookie(req.headers.cookie, CSRF_COOKIE);
+    if (existing) return existing;
     const token = generateCsrfToken();
-    res.cookie(CSRF_COOKIE, token, { httpOnly: true, sameSite: 'strict', path: '/contact/start-a-project' });
+    res.cookie(CSRF_COOKIE, token, { httpOnly: true, sameSite: 'strict', path: '/' });
     return token;
   }
 
   @Get()
   @Render('contact/start-a-project')
-  form(@Res({ passthrough: true }) res: Response) {
+  form(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
     return {
       meta: this.meta(),
       projectTypes: PROJECT_TYPES,
       timelines: TIMELINES,
       values: {},
       errors: null,
-      csrfToken: this.issueCsrfCookie(res),
+      csrfToken: this.issueCsrfCookie(req, res),
     };
   }
 
@@ -60,7 +62,7 @@ export class EnquiryController {
       meta: this.meta(),
       projectTypes: PROJECT_TYPES,
       timelines: TIMELINES,
-      csrfToken: this.issueCsrfCookie(res),
+      csrfToken: this.issueCsrfCookie(req, res),
     };
 
     if (!verifyCsrf(cookieToken, body['_csrf'])) {
