@@ -18,7 +18,8 @@
 .cs-related-grid{margin-top:var(--space-5);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6)}
 .cs-cta{margin-top:var(--space-9);padding:var(--space-8) var(--page-x);margin-inline:calc(-1 * var(--page-x));background:var(--charcoal);color:#fff}
 .cs-cta h2{font-size:clamp(26px,3.4vw,44px);max-width:20ch}
-.cs-cta .btn{margin-top:var(--space-5);background:var(--cobalt);border-color:var(--cobalt)}
+.cs-cta .btn{margin-top:var(--space-5)}
+.cs-cta .btn .btn-inner{background:var(--cobalt)}
 @media (max-width:760px){
   .cs{padding-top:84px}
   .cs-section{grid-template-columns:1fr;gap:var(--space-3)}

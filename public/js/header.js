@@ -25,28 +25,30 @@
   }
 
   function setCompact(compact) {
-    if (!header) return;
+    if (!header || overlayOpen) return;
     header.classList.toggle('is-sticky', window.scrollY > 1);
     header.classList.toggle('is-compact', compact);
     if (compact) {
-      header.classList.remove('menu-open');
-      if (!overlayOpen) setToggle(false);
+      setToggle(false);
       closeWorkMenu();
     }
   }
 
   function applyDirection() {
+    if (overlayOpen) {
+      if (actionBar) actionBar.classList.remove('show');
+      return;
+    }
     var y = window.scrollY;
     if (y <= 1) {
       dir = 'up';
       setCompact(false);
     } else if (dir === 'down') {
       setCompact(true);
-      if (overlayOpen) closeOverlay();
     } else {
       setCompact(false);
     }
-    if (actionBar) actionBar.classList.toggle('show', !overlayOpen && y > window.innerHeight * 0.9);
+    if (actionBar) actionBar.classList.toggle('show', y > window.innerHeight * 0.9);
   }
 
   function syncRestoredScroll() {
@@ -289,7 +291,9 @@
     menu.classList.add('open');
     menu.setAttribute('aria-hidden', 'false');
     setToggle(true);
-    if (header) header.classList.add('menu-open');
+    if (header) {
+      header.classList.add('menu-open', 'is-sticky');
+    }
     document.body.style.overflow = 'hidden';
     if (actionBar) actionBar.classList.remove('show');
     var first = menu.querySelector('a, button');
@@ -302,7 +306,13 @@
     menu.classList.remove('open');
     menu.setAttribute('aria-hidden', 'true');
     setToggle(false);
-    if (header) header.classList.remove('menu-open');
+    if (header) {
+      header.classList.remove('menu-open');
+      if (window.scrollY > 1) {
+        dir = 'down';
+        header.classList.add('is-compact', 'is-sticky');
+      }
+    }
     document.body.style.overflow = '';
   }
 
