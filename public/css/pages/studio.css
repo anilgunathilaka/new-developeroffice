@@ -13,4 +13,4 @@
 .approach-step .n{font-family:var(--display);font-size:clamp(30px,4vw,56px);color:var(--cobalt);line-height:1}
 .approach-step h3{font-size:clamp(20px,2.2vw,26px);margin-bottom:var(--space-3)}
 .approach-step p{color:var(--mid-grey);max-width:56ch}
-@media (max-width:760px){.approach-step{grid-template-columns:1fr;gap:var(--space-3)}}
+@media (max-width:760px){.studio{padding-top:84px}.approach-step{grid-template-columns:1fr;gap:var(--space-3)}}

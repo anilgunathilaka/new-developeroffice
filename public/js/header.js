@@ -46,7 +46,7 @@
     } else {
       setCompact(false);
     }
-    if (actionBar) actionBar.classList.toggle('show', y > window.innerHeight * 0.9);
+    if (actionBar) actionBar.classList.toggle('show', !overlayOpen && y > window.innerHeight * 0.9);
   }
 
   function syncRestoredScroll() {
@@ -291,6 +291,7 @@
     setToggle(true);
     if (header) header.classList.add('menu-open');
     document.body.style.overflow = 'hidden';
+    if (actionBar) actionBar.classList.remove('show');
     var first = menu.querySelector('a, button');
     if (first) first.focus();
   }

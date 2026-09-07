@@ -32,6 +32,6 @@ export function registerHbsHelpers(): void {
   hbs.registerHelper('year', () => new Date().getFullYear());
 
   // Cache-busting suffix for static assets. Bump ASSET_VERSION on deploy.
-  const version = process.env.ASSET_VERSION || '158';
+  const version = process.env.ASSET_VERSION || '171';
   hbs.registerHelper('asset', (path: string) => new hbs.handlebars.SafeString(`${path}?v=${version}`));
 }

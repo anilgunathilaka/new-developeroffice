@@ -20,6 +20,8 @@
 .cs-cta h2{font-size:clamp(26px,3.4vw,44px);max-width:20ch}
 .cs-cta .btn{margin-top:var(--space-5);background:var(--cobalt);border-color:var(--cobalt)}
 @media (max-width:760px){
+  .cs{padding-top:84px}
   .cs-section{grid-template-columns:1fr;gap:var(--space-3)}
   .cs-related-grid{grid-template-columns:1fr}
+  .cs-cta{padding:var(--space-7) 20px;margin-inline:0}
 }

@@ -14,7 +14,7 @@
 .form-row input,.form-row select,.form-row textarea{
   width:100%;font-family:var(--body);font-size:16px;color:var(--near-black);
   background:transparent;border:none;border-bottom:1px solid var(--soft-grey);
-  padding:10px 2px;transition:border-color var(--t-state);border-radius:0;
+  padding:14px 2px;min-height:48px;transition:border-color var(--t-state);border-radius:0;
 }
 .form-row textarea{min-height:120px;resize:vertical}
 .form-row input:focus,.form-row select:focus,.form-row textarea:focus{outline:none;border-bottom-color:var(--cobalt);border-bottom-width:2px}
@@ -27,7 +27,9 @@
 .form-error{color:var(--error);font-size:14px;margin-bottom:var(--space-5);font-family:var(--mono)}
 .form-row input[aria-invalid="true"],.form-row select[aria-invalid="true"],.form-row textarea[aria-invalid="true"]{border-bottom-color:var(--error)}
 @media (max-width:760px){
+  .contact{padding-top:84px}
   .contact-grid{grid-template-columns:1fr;gap:var(--space-6)}
   .form-row.two{grid-template-columns:1fr}
   .contact-direct{order:-1}
+  .form-submit .btn{width:100%;justify-content:center;min-height:48px}
 }

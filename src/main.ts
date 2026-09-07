@@ -3,6 +3,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { ValidationPipe } from '@nestjs/common';
 import { join, relative, sep } from 'path';
 import { readdirSync, readFileSync } from 'fs';
+import { NextFunction, Request, Response } from 'express';
 import hbs = require('hbs');
 import { AppModule } from './app.module';
 import { registerHbsHelpers } from './common/hbs-helpers';
@@ -45,6 +46,15 @@ async function bootstrap() {
   // viz/*.hbs) exists before the first request.
   registerNestedPartials(partialsDir);
   registerHbsHelpers();
+
+  // Partials are read into memory at boot. Re-read in development so .hbs
+  // edits show up without a full server restart.
+  if (process.env.NODE_ENV !== 'production') {
+    app.use((_req: Request, _res: Response, next: NextFunction) => {
+      registerNestedPartials(partialsDir);
+      next();
+    });
+  }
 
   app.use(csrfLocalsMiddleware);
 

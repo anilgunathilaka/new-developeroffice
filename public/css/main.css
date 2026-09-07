@@ -12,7 +12,8 @@
 }
 .eyebrow::before{content:"";width:24px;height:1px;background:var(--cobalt);display:inline-block}
 .wrap{padding-inline:var(--page-x)}
-section{padding-block:clamp(64px,10vw,var(--space-10))}
+section{padding-block:80px}
+.hero,.proof,.work,.reality,.ai,.method,.insights-teaser,.closing{padding-block-start:0}
 
 .link-arw{
   font-family:var(--mono);font-size:14px;display:inline-flex;gap:10px;align-items:center;
@@ -47,6 +48,7 @@ section{padding-block:clamp(64px,10vw,var(--space-10))}
   display:flex;justify-content:center;
   padding:20px;
   background:transparent;border:0;box-shadow:none;height:auto;
+  max-width:100%;box-sizing:border-box;
   pointer-events:none;
   --nav-spring:cubic-bezier(.22,1.15,.36,1);
   --nav-overshoot:cubic-bezier(.33,1.42,.05,.96);
@@ -567,6 +569,7 @@ section{padding-block:clamp(64px,10vw,var(--space-10))}
 main#main{
   position:relative;z-index:1;
   background:var(--off-white);
+  min-width:0;max-width:100%;overflow-x:clip;
 }
 .footer{
   position:relative;z-index:2;
@@ -675,7 +678,7 @@ main#main{
 /* ---------- mobile action bar ---------- */
 .action-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;padding:12px var(--page-x);background:rgba(247,242,246,.92);backdrop-filter:blur(10px);border-top:1px solid var(--soft-grey);transform:translateY(100%);transition:transform 260ms var(--ease)}
 .action-bar.show{transform:translateY(0)}
-.action-bar .btn{width:100%;justify-content:center}
+.action-bar .btn{width:100%;justify-content:center;min-height:48px}
 
 /* ---------- generic page header (interior pages) ---------- */
 .page-hero{padding-top:160px}
@@ -712,35 +715,67 @@ main#main{
 @media (max-width:1024px){
   .nav{display:none}
   .work-menu,.nav-backdrop,.nav-sheet{display:none !important}
-  .header.has-submenu{padding:20px}
+  .header,
+  .header.has-submenu,
+  .header:not(.is-compact),
+  .header.is-compact{padding:0}
+  .header-bar,
+  .header:not(.is-compact) .header-bar,
   .header.has-submenu .header-bar{
-    width:min(1200px,100%);
-    height:100px;
-    border-radius:20px;
-    padding:27px;
+    width:auto;
+    flex:1 1 auto;
+    max-width:calc(100vw - 24px);
+    margin:12px;
+    height:64px;
+    border-radius:16px;
+    padding:10px 16px;
     box-shadow:0 8px 28px rgba(0,0,0,.12);
+    grid-template-columns:1fr auto;
+    box-sizing:border-box;
   }
   .header:not(.is-compact) .nav-end .btn-header{display:none}
-  .header:not(.is-compact) .menu-toggle{
+  .header .menu-toggle,
+  .header:not(.is-compact) .menu-toggle,
+  .header.is-compact .menu-toggle{
     position:relative;top:auto;right:auto;
     transform:none;pointer-events:auto;
     color:#191919;background:transparent;
   }
-  .header:not(.is-compact) .header-bar{grid-template-columns:1fr auto;height:100px;padding:27px}
+  .header.is-compact .nav-end,
+  .header.is-compact .btn-header,
+  .header.is-compact .menu-toggle{pointer-events:auto}
   .header.is-compact .nav-end .btn-header{display:inline-flex}
+  .header.is-compact .btn-header{transform:none}
+  .header.menu-open .menu-toggle{color:#fff;background:#191919}
+  .page-hero,.contact,.cs,.studio{padding-top:100px}
 }
 @media (max-width:760px){
-  body{font-size:17px}
-  .header:not(.is-compact){padding:20px}
-  .header:not(.is-compact) .header-bar{height:100px;padding:27px}
+  body{font-size:17px;line-height:1.65}
+  .header,
+  .header:not(.is-compact),
+  .header.is-compact{padding:0}
+  .header-bar,
+  .header:not(.is-compact) .header-bar{height:56px;padding:8px 12px;border-radius:14px;margin:10px;max-width:calc(100vw - 20px)}
+  .brand-logo{height:20px;max-width:min(148px,42vw)}
+  .btn-header{height:40px;padding:0 16px;font-size:13px}
+  .menu-toggle{width:40px;height:40px}
+  .mobile-menu{padding:76px var(--page-x) calc(24px + 72px);z-index:110}
   .action-bar{display:block}
   .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-inner{
+    border-bottom-left-radius:28px;border-bottom-right-radius:28px;
+    padding:64px 20px calc(48px + 80px);
+  }
+  .foot-top{margin-bottom:48px}
+  .foot-top h2{font-size:clamp(48px,16vw,96px);white-space:normal}
+  .foot-bottom{margin-top:40px;flex-direction:column;align-items:flex-start}
   .site-contact-pin{height:auto;margin-top:0}
   .site-contact{
     position:relative;height:auto;min-height:100svh;
-    padding:20vh clamp(24px,5vw,80px) calc(48px + 72px);
+    padding:16vh 20px calc(48px + 80px);
   }
   .site-contact-fields{grid-template-columns:1fr}
+  .page-hero,.contact,.cs,.studio{padding-top:84px}
 }
 @media (prefers-reduced-motion:reduce){
   .nav-pill,.header-bar,.nav-sheet,.brand,.nav,.btn-header,.menu-toggle,

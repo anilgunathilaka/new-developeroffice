@@ -2,4 +2,4 @@
 .ins-index{padding-top:160px}
 .ins-grid{margin-top:var(--space-8);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6)}
 @media (max-width:1000px){.ins-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:760px){.ins-grid{grid-template-columns:1fr}}
+@media (max-width:760px){.ins-index{padding-top:84px}.ins-grid{grid-template-columns:1fr}}

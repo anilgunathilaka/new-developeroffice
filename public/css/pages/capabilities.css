@@ -6,4 +6,4 @@
 .cap-cell h2{font-size:clamp(22px,2.6vw,30px)}
 .cap-cell p{margin-top:var(--space-4);color:var(--mid-grey);font-size:15.5px}
 .cap-cell .link-arw{margin-top:var(--space-5)}
-@media (max-width:760px){.cap-grid{grid-template-columns:1fr}}
+@media (max-width:760px){.cap-index{padding-top:84px}.cap-grid{grid-template-columns:1fr}.cap-cell{padding:var(--space-6) var(--space-4)}}
