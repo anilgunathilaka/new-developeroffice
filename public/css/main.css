@@ -102,6 +102,8 @@ section{padding-block:80px}
 .header:not(.is-ready) .nav,
 .header:not(.is-ready) .btn-header,
 .header:not(.is-ready) .btn-inner,
+.header:not(.is-ready) .brand-logo,
+.header:not(.is-ready) .brand-logo--menu,
 .header:not(.is-ready) .menu-toggle{
   transition:none;
 }
@@ -211,9 +213,22 @@ section{padding-block:80px}
   opacity:0;
   pointer-events:none;
 }
-.brand{display:flex;align-items:center;line-height:0;justify-self:start}
-.brand-logo{display:block;height:24px;width:auto;max-width:min(168px,38vw)}
-.brand-logo--menu{display:none}
+.brand{display:flex;align-items:center;line-height:0;justify-self:start;position:relative}
+.brand-logo{
+  display:block;height:24px;width:auto;max-width:min(168px,38vw);
+  transform-origin:left center;
+  transition:transform .8s var(--nav-overshoot),opacity .3s var(--nav-fade);
+}
+.brand-logo--menu{
+  display:block;
+  position:absolute;left:0;top:50%;
+  height:47px;width:auto;max-width:min(328px,74vw);
+  transform:translateY(-50%) scale(0);
+  transform-origin:left center;
+  opacity:0;
+  pointer-events:none;
+  transition:transform .8s var(--nav-overshoot),opacity .3s var(--nav-fade),filter .3s var(--nav-fade);
+}
 .brand-logo--on-dark{filter:brightness(0) invert(1)}
 .header.is-compact .brand,
 .header.menu-open .brand{
@@ -221,19 +236,39 @@ section{padding-block:80px}
   opacity:1;
   pointer-events:auto;
 }
-.header.is-compact .brand .brand-logo,
-.header.menu-open .brand .brand-logo{display:none}
+.header.is-compact .brand .brand-logo:not(.brand-logo--menu),
+.header.menu-open .brand .brand-logo:not(.brand-logo--menu){
+  transform:translateY(-8rem);
+  opacity:0;
+  pointer-events:none;
+}
 .header.is-compact .brand .brand-logo--menu,
 .header.menu-open .brand .brand-logo--menu{
-  display:block;
-  height:36px;
-  max-width:min(252px,57vw);
-}
-.header.menu-open.is-compact .header-bar{
-  background:#fff;
-  box-shadow:0 8px 28px rgba(0,0,0,.12);
+  transform:translateY(-50%) scale(1);
+  opacity:1;
   pointer-events:auto;
 }
+.header.menu-open.is-compact .header-bar{
+  background:transparent;
+  box-shadow:none;
+  pointer-events:auto;
+}
+.header[data-sampling],
+.header[data-sampling] *{pointer-events:none !important}
+.header.is-on-dark.is-compact .brand-logo--menu,
+.header.is-on-dark.menu-open .brand-logo--menu{
+  filter:brightness(0) invert(1);
+}
+.header.is-on-dark.is-compact .btn-header,
+.header.is-on-dark.menu-open .btn-header{color:#19171c}
+.header.is-on-dark.is-compact .btn-header .btn-inner,
+.header.is-on-dark.menu-open .btn-header .btn-inner{background:#fff;border-color:#fff}
+.header.is-on-dark.is-compact .btn-header:hover .btn-inner,
+.header.is-on-dark.menu-open .btn-header:hover .btn-inner{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.header.is-on-dark.is-compact .menu-toggle,
+.header.is-on-dark.menu-open .menu-toggle{color:#191919;background:#fff}
+.header.is-on-dark.is-compact .menu-toggle:hover,
+.header.is-on-dark.menu-open .menu-toggle:hover{background:var(--cobalt);color:#fff}
 .nav{justify-self:center}
 .nav-links{position:relative;display:flex;align-items:center}
 .nav-links ul{display:flex;align-items:center;gap:2px;position:relative;z-index:1}
@@ -520,11 +555,32 @@ section{padding-block:80px}
   transition:transform .8s var(--nav-overshoot),background-color .16s linear;
 }
 .menu-toggle:hover{background:var(--cobalt)}
-.menu-toggle-bars{display:flex;flex-direction:column;justify-content:center;gap:5px;width:18px;height:14px;margin:auto}
-.menu-toggle-bars span{display:block;width:100%;height:2px;background:currentColor;border-radius:2px;transition:transform .3s var(--ease),opacity .3s var(--ease)}
-.header.menu-open .menu-toggle-bars span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.header.menu-open .menu-toggle-bars span:nth-child(2){opacity:0}
-.header.menu-open .menu-toggle-bars span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.menu-toggle-icon{
+  position:relative;display:block;width:20px;height:14px;margin:auto;
+}
+.menu-toggle-burger,
+.menu-toggle-close{
+  position:absolute;left:50%;top:50%;
+  transition:transform .45s var(--nav-overshoot),opacity .25s var(--nav-fade);
+}
+.menu-toggle-burger{
+  width:20px;height:13px;
+  transform:translate(-50%,-50%) scale(1) rotate(0deg);
+  opacity:1;
+}
+.menu-toggle-close{
+  width:14px;height:14px;
+  transform:translate(-50%,-50%) scale(.4) rotate(-90deg);
+  opacity:0;
+}
+.header.menu-open .menu-toggle-burger{
+  transform:translate(-50%,-50%) scale(.4) rotate(90deg);
+  opacity:0;
+}
+.header.menu-open .menu-toggle-close{
+  transform:translate(-50%,-50%) scale(1) rotate(0deg);
+  opacity:1;
+}
 .header.is-compact .btn-header{transform:translateX(-56px);font-weight:600}
 .header.is-compact .btn-header-arw{opacity:0;width:0;margin:0;overflow:hidden}
 .header.is-compact .menu-toggle{
@@ -800,6 +856,9 @@ main#main{
   .header.is-compact .btn-header{transform:none}
   .header.menu-open .nav-end .btn-header{display:none}
   .header.menu-open .menu-toggle{color:#fff;background:#191919}
+  .header.is-on-dark .menu-toggle,
+  .header.is-on-dark.is-compact .menu-toggle,
+  .header.is-on-dark.menu-open .menu-toggle{color:#191919;background:#fff}
   .page-hero,.contact,.cs,.studio{padding-top:100px}
 }
 @media (max-width:760px){
@@ -810,8 +869,7 @@ main#main{
   .header-bar,
   .header:not(.is-compact) .header-bar{height:56px;padding:8px 12px;border-radius:14px;margin:10px;max-width:calc(100vw - 20px)}
   .brand-logo{height:20px;max-width:min(148px,42vw)}
-  .header.is-compact .brand .brand-logo--menu,
-  .header.menu-open .brand .brand-logo--menu{height:30px;max-width:min(222px,63vw)}
+  .brand-logo--menu{height:39px;max-width:min(289px,82vw)}
   .btn-header{font-size:16px}
   .btn-header .btn-inner{height:40px;padding:8px 20px}
   .menu-toggle{width:40px;height:40px}
@@ -834,7 +892,7 @@ main#main{
   .page-hero,.contact,.cs,.studio{padding-top:84px}
 }
 @media (prefers-reduced-motion:reduce){
-  .nav-pill,.header-bar,.nav-sheet,.brand,.nav,.btn-header,.btn-inner,.menu-toggle,
+  .nav-pill,.header-bar,.nav-sheet,.brand,.nav,.brand-logo,.brand-logo--menu,.btn-header,.btn-inner,.menu-toggle,.menu-toggle-burger,.menu-toggle-close,
   .work-menu,.work-menu-card,.work-menu-text,.work-menu-card-face{transition:none}
   .btn-header:hover .btn-inner,
   .work-all-btn:hover .btn-inner,

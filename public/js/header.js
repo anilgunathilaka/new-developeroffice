@@ -24,6 +24,79 @@
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   }
 
+  function parseRgb(str) {
+    if (!str || str === 'transparent') return null;
+    var m = str.match(/rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)/);
+    if (!m) return null;
+    var a = m[4] === undefined ? 1 : parseFloat(m[4]);
+    if (a < 0.45) return null;
+    return { r: +m[1], g: +m[2], b: +m[3] };
+  }
+
+  function isDarkRgb(c) {
+    return (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) < 140;
+  }
+
+  function isMarkedDark(node) {
+    if (!node || !node.classList) return false;
+    return node.hasAttribute('data-on-dark')
+      || node.classList.contains('hero')
+      || node.classList.contains('hero-stage')
+      || node.classList.contains('foot-inner')
+      || node.classList.contains('site-contact')
+      || node.classList.contains('cs-cta')
+      || node.classList.contains('mobile-menu');
+  }
+
+  function hitBehindHeader(x, y) {
+    var stack = document.elementsFromPoint ? document.elementsFromPoint(x, y) : [document.elementFromPoint(x, y)];
+    for (var i = 0; i < stack.length; i++) {
+      var el = stack[i];
+      if (!el || el === header || (header && header.contains(el))) continue;
+      return el;
+    }
+    return null;
+  }
+
+  function isDarkBehind(el) {
+    var node = el;
+    while (node && node !== document.documentElement) {
+      if (isMarkedDark(node)) return true;
+      var tag = node.tagName;
+      if (tag === 'VIDEO' || tag === 'CANVAS') return true;
+      if (tag !== 'IMG') {
+        var parsed = parseRgb(window.getComputedStyle(node).backgroundColor);
+        if (parsed) return isDarkRgb(parsed);
+      }
+      node = node.parentElement;
+    }
+    return false;
+  }
+
+  function syncOnDark() {
+    if (!header) return;
+    if (overlayOpen) {
+      header.classList.add('is-on-dark');
+      return;
+    }
+    if (!header.classList.contains('is-compact')) {
+      header.classList.remove('is-on-dark');
+      return;
+    }
+    var band = header.getBoundingClientRect();
+    var y = Math.max(8, Math.min(window.innerHeight - 8, band.top + Math.min(28, Math.max(12, band.height * 0.35))));
+    var xs = [48, Math.round(window.innerWidth / 2), window.innerWidth - 48];
+    var darkVotes = 0;
+    var samples = 0;
+    for (var i = 0; i < xs.length; i++) {
+      var hit = hitBehindHeader(xs[i], y);
+      if (!hit) continue;
+      samples++;
+      if (isDarkBehind(hit)) darkVotes++;
+    }
+    header.classList.toggle('is-on-dark', samples ? darkVotes >= 1 : false);
+  }
+
   function setCompact(compact) {
     if (!header || overlayOpen) return;
     header.classList.toggle('is-sticky', window.scrollY > 1);
@@ -32,11 +105,13 @@
       setToggle(false);
       closeWorkMenu();
     }
+    syncOnDark();
   }
 
   function applyDirection() {
     if (overlayOpen) {
       if (actionBar) actionBar.classList.remove('show');
+      syncOnDark();
       return;
     }
     var y = window.scrollY;
@@ -97,6 +172,7 @@
     endRestore();
     onUserScroll();
   }, { passive: true });
+  window.addEventListener('resize', syncOnDark);
 
   ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function (ev) {
     window.addEventListener(ev, endRestore, { passive: true });
@@ -294,6 +370,7 @@
     if (header) {
       header.classList.add('menu-open', 'is-sticky');
     }
+    syncOnDark();
     document.body.style.overflow = 'hidden';
     if (actionBar) actionBar.classList.remove('show');
     var first = menu.querySelector('a, button');
@@ -313,6 +390,7 @@
         header.classList.add('is-compact', 'is-sticky');
       }
     }
+    syncOnDark();
     document.body.style.overflow = '';
   }
 

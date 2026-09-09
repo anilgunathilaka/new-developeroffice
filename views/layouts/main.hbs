@@ -82,7 +82,10 @@
           </span>
         </a>
         <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-          <span class="menu-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="menu-toggle-icon" aria-hidden="true">
+            <svg class="menu-toggle-burger" width="20" height="13" viewBox="0 0 16 10" fill="currentColor"><path d="M.5 10h15V8.333H.5V10Zm0-4.167h15V4.167H.5v1.666ZM.5 0v1.667h15V0H.5Z"/></svg>
+            <svg class="menu-toggle-close" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1 1 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
         </button>
       </div>
     </div>
@@ -90,8 +93,11 @@
   <script>
     (function () {
       var h = document.getElementById('header');
-      if (h && window.scrollY > 1) {
-        h.classList.add('is-sticky', 'is-compact');
+      if (!h || window.scrollY <= 1) return;
+      h.classList.add('is-sticky', 'is-compact');
+      var hero = document.querySelector('.hero, [data-on-dark]');
+      if (hero && hero.getBoundingClientRect().bottom > 48) {
+        h.classList.add('is-on-dark');
       }
     })();
   </script>
@@ -100,7 +106,7 @@
     {{{body}}}
   </main>
   <footer class="footer">
-    <div class="foot-inner">
+    <div class="foot-inner" data-on-dark>
       <div class="foot-top">
         <h2>DO NOW</h2>
         <p>Let's figure out what to build. From Colombo, for thirty years.</p>
